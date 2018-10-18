@@ -5,9 +5,17 @@
     <string name="next_match_title">NEXT MATCH</string>
     <string name="home_badge_title">Home Badge</string>
     <string name="away_badge_title">Away Badge</string>
+    <string name="goals_title">Goals</string>
 
     <string name="mock_text">Mock text</string>
     <string name="mock_score">0</string>
     <string name="mock_team">AC Milan</string>
     <string name="static_vs">vs</string>
+    <string name="shots_title">Shots</string>
+    <string name="goal_keeper_title">Goal Keeper</string>
+    <string name="lineups_title">Lineups</string>
+    <string name="defense_title">Defense</string>
+    <string name="midfield_title">Midfield</string>
+    <string name="forward_title">Forward</string>
+    <string name="substitutes_title">Substitutes</string>
 </resources>
