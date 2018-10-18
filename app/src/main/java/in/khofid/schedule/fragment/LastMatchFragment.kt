@@ -1,8 +1,6 @@
 package `in`.khofid.schedule.fragment
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.api.ApiRepository
-import `in`.khofid.schedule.main.MainActivity
 import `in`.khofid.schedule.main.MainAdapter
 import `in`.khofid.schedule.main.MainPresenter
 import `in`.khofid.schedule.main.MainView
@@ -15,8 +13,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.gson.Gson
+import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
+import org.jetbrains.anko.support.v4.onRefresh
 
 class LastMatchFragment: Fragment(), MainView {
 
@@ -32,10 +31,10 @@ class LastMatchFragment: Fragment(), MainView {
         rootView.match_rv.layoutManager = LinearLayoutManager(activity)
         rootView.match_rv.adapter = adapter
 
-        val request = ApiRepository()
-        val gson = Gson()
-        presenter = MainPresenter(this, request, gson)
+        presenter = MainPresenter(this)
         presenter.getLastMatchList()
+
+        rootView.swipe_refresh.onRefresh { presenter.getLastMatchList() }
 
         return rootView
     }
@@ -49,6 +48,7 @@ class LastMatchFragment: Fragment(), MainView {
     }
 
     override fun showMatchList(data: List<Match>) {
+        swipe_refresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
         adapter.notifyDataSetChanged()

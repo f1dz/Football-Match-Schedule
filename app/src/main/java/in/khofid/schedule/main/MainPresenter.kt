@@ -7,9 +7,7 @@ import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainPresenter(private val view: MainView,
-                    private val apiRepository: ApiRepository,
-                    private val gson: Gson) {
+class MainPresenter(private val view: MainView) {
     fun getLastMatchList(){
         view.showLoading()
         async(TheSportDBApi.getLastMatch())
@@ -22,9 +20,8 @@ class MainPresenter(private val view: MainView,
 
     fun async(match: String){
         doAsync {
-            val response = apiRepository.doRequest(match)
-            val data = gson.fromJson(
-                response,
+            val data = Gson().fromJson(
+                ApiRepository().doRequest(match),
                 MatchResponse::class.java
             )
 
