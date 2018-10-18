@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Football Match Schedule</string>
+
+    <string name="last_match_title">LAST MATCH</string>
+    <string name="next_match_title">NEXT MATCH</string>
+    <string name="home_badge_title">Home Badge</string>
+    <string name="away_badge_title">Away Badge</string>
+
+    <string name="mock_text">Mock text</string>
+    <string name="mock_score">0</string>
+    <string name="mock_team">AC Milan</string>
+    <string name="static_vs">vs</string>
 </resources>

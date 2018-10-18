@@ -1,4 +1,4 @@
-package `in`.khofid.footballmatchschedule
+package `in`.khofid.schedule
 
 import org.junit.Test
 
