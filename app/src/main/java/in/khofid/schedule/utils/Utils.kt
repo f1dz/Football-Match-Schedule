@@ -12,5 +12,5 @@ fun View.invisible() {
 
 fun String.normalize(): String {
     val list: List<String> = this.split(";").map { it.trim() }
-    return list.joinToString("\n", postfix = "")
+    return list.joinToString("\n", postfix = "").trim()
 }

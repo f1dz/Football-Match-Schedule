@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.match_detail_layout.*
 class MatchDetailActivity : AppCompatActivity(), MatchView {
 
     private lateinit var presenter: MatchPresenter
-//    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

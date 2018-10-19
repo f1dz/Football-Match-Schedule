@@ -14,7 +14,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.support.v4.onRefresh

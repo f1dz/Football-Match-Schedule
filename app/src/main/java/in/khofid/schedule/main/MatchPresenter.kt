@@ -2,7 +2,10 @@ package `in`.khofid.schedule.main
 
 import `in`.khofid.schedule.api.ApiRepository
 import `in`.khofid.schedule.api.TheSportDBApi
-import `in`.khofid.schedule.model.*
+import `in`.khofid.schedule.model.MatchDetail
+import `in`.khofid.schedule.model.MatchDetailResponse
+import `in`.khofid.schedule.model.Team
+import `in`.khofid.schedule.model.TeamResponse
 import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
