@@ -38,4 +38,12 @@ object TheSportDBApi {
             .build()
             .toString()
     }
+
+    fun getTeamDetail(teamId: Int): String{
+        return UriCommon()
+            .appendPath("lookupteam.php")
+            .appendQueryParameter("id", teamId.toString())
+            .build()
+            .toString()
+    }
 }

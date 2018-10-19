@@ -3,14 +3,15 @@ package `in`.khofid.schedule.main
 import `in`.khofid.schedule.R
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.model.MatchDetail
+import `in`.khofid.schedule.model.Team
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.normalize
 import `in`.khofid.schedule.utils.visible
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_match_detail.*
 import kotlinx.android.synthetic.main.match_detail_layout.*
-import org.jetbrains.anko.toast
 
 class MatchDetailActivity : AppCompatActivity(), MatchView {
 
@@ -58,6 +59,13 @@ class MatchDetailActivity : AppCompatActivity(), MatchView {
         away_forward.text = match.strAwayLineupForward?.normalize()
         home_substitutes.text = match.strHomeLineupSubstitutes?.normalize()
         away_substitutes.text = match.strAwayLineupSubstitutes?.normalize()
+
+        presenter.getTeamDetail(match)
+    }
+
+    override fun showBadge(teams: ArrayList<Team>) {
+        Picasso.get().load(teams.first().strTeamBadge).into(home_badge)
+        Picasso.get().load(teams.last().strTeamBadge).into(away_badge)
     }
 
 }
