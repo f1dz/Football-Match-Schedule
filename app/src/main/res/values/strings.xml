@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">Football Match Schedule</string>
+    <string name="app_name">Football Match</string>
+
+    <string name="last_match_title">LAST MATCH</string>
+    <string name="next_match_title">NEXT MATCH</string>
+    <string name="home_badge_title">Home Badge</string>
+    <string name="away_badge_title">Away Badge</string>
+    <string name="goals_title">Goals</string>
+
+    <string name="mock_text"></string>
+    <string name="mock_score">0</string>
+    <string name="mock_team"></string>
+    <string name="static_vs">vs</string>
+    <string name="shots_title">Shots</string>
+    <string name="goal_keeper_title">Goal Keeper</string>
+    <string name="lineups_title">Lineups</string>
+    <string name="defense_title">Defense</string>
+    <string name="midfield_title">Midfield</string>
+    <string name="forward_title">Forward</string>
+    <string name="substitutes_title">Substitutes</string>
+    <string name="title_activity_match_detail">MatchDetailActivity</string>
+    <string name="match_detail_title">Match Detail</string>
 </resources>
