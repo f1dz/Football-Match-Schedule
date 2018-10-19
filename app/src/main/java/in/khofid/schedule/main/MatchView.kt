@@ -6,6 +6,6 @@ import `in`.khofid.schedule.model.Team
 interface MatchView {
     fun showLoading()
     fun hideLoading()
-    fun showMatch(data: List<MatchDetail>)
+    fun showMatch(matches: List<MatchDetail>)
     fun showBadge(teams: ArrayList<Team>)
 }
