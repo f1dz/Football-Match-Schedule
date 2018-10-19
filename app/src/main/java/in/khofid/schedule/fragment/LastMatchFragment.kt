@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
@@ -39,7 +40,9 @@ class LastMatchFragment: Fragment(), MainView {
         presenter = MainPresenter(this)
         presenter.getLastMatchList()
 
-        rootView.swipe_refresh.onRefresh { presenter.getLastMatchList() }
+        rootView.swipe_refresh.onRefresh {
+            presenter.getLastMatchList()
+        }
 
         return rootView
     }
