@@ -27,6 +27,7 @@ class MatchPresenter(private val view: MatchView) {
     }
 
     fun getTeamDetail(match: MatchDetail){
+        view.showLoading()
         doAsync {
             val homeTeam = Gson().fromJson(
                 ApiRepository().doRequest(
@@ -41,6 +42,7 @@ class MatchPresenter(private val view: MatchView) {
             )
 
             uiThread {
+                view.hideLoading()
                 var teams: ArrayList<Team> = ArrayList()
                 teams.add(homeTeam.teams.first())
                 teams.add(awayTeam.teams.first())
