@@ -4,6 +4,7 @@ import `in`.khofid.schedule.R
 import `in`.khofid.schedule.main.MainAdapter
 import `in`.khofid.schedule.main.MainPresenter
 import `in`.khofid.schedule.main.MainView
+import `in`.khofid.schedule.main.MatchDetailActivity
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.visible
@@ -17,6 +18,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.startActivity
 
 class NextMatchFragment: Fragment(), MainView {
 
@@ -29,7 +31,7 @@ class NextMatchFragment: Fragment(), MainView {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
 
         adapter = MainAdapter(rootView.context, matches){
-            Toast.makeText(rootView.context, it.matchId.toString(), Toast.LENGTH_SHORT).show()
+            startActivity<MatchDetailActivity>("match" to it)
         }
         rootView.match_rv.layoutManager = LinearLayoutManager(activity)
         rootView.match_rv.adapter = adapter

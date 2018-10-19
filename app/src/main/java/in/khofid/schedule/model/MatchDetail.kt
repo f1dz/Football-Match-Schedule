@@ -28,10 +28,10 @@ data class MatchDetail(
     var intAwayScore: Int? = null,
 
     @SerializedName("strHomeGoalDetails")
-    var strHomeGoalDetails: String,
+    var strHomeGoalDetails: String? = null,
 
     @SerializedName("strAwayGoalDetails")
-    var strAwayGoalDetails: String,
+    var strAwayGoalDetails: String? = null,
 
     @SerializedName("intHomeShots")
     var intHomeShots: Int? = null,
@@ -40,33 +40,33 @@ data class MatchDetail(
     var intAwayShots: Int? = null,
 
     @SerializedName("strHomeLineupGoalkeeper")
-    var strHomeLineupGoalkeeper: String,
+    var strHomeLineupGoalkeeper: String? = null,
 
     @SerializedName("strAwayLineupGoalkeeper")
-    var strAwayLineupGoalkeeper: String,
+    var strAwayLineupGoalkeeper: String? = null,
 
     @SerializedName("strHomeLineupDefense")
-    var strHomeLineupDefense: String,
+    var strHomeLineupDefense: String? = null,
 
     @SerializedName("strAwayLineupDefense")
-    var strAwayLineupDefense: String,
+    var strAwayLineupDefense: String? = null,
 
     @SerializedName("strHomeLineupMidfield")
-    var strHomeLineupMidfield: String,
+    var strHomeLineupMidfield: String? = null,
 
     @SerializedName("strAwayLineupMidfield")
-    var strAwayLineupMidfield: String,
+    var strAwayLineupMidfield: String? = null,
 
     @SerializedName("strHomeLineupForward")
-    var strHomeLineupForward: String,
+    var strHomeLineupForward: String? = null,
 
     @SerializedName("strAwayLineupForward")
-    var strAwayLineupForward: String,
+    var strAwayLineupForward: String? = null,
 
     @SerializedName("strHomeLineupSubstitutes")
-    var strHomeLineupSubstitutes: String,
+    var strHomeLineupSubstitutes: String? = null,
 
     @SerializedName("strAwayLineupSubstitutes")
-    var strAwayLineupSubstitutes: String
+    var strAwayLineupSubstitutes: String? = null
 
 )
