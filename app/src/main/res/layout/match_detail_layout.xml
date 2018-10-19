@@ -2,19 +2,34 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".main.MatchDetailActivity"
+    tools:showIn="@layout/activity_match_detail">
+
+    <TextView
+        android:id="@+id/match_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/mock_text"
+        style="@style/MatchDetailTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/static_vs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/static_vs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/match_date" />
 
     <TextView
         android:id="@+id/home_score"
@@ -127,6 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mock_text"
+            android:singleLine="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/goals" />
 
@@ -135,6 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mock_text"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/goals" />
     </android.support.constraint.ConstraintLayout>
@@ -204,7 +221,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/mock_text"
-        app:layout_constraintBottom_toBottomOf="@+id/goal_keeper_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/goal_keeper_title" />
 
@@ -214,7 +230,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/mock_text"
-        app:layout_constraintBottom_toBottomOf="@+id/goal_keeper_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/goal_keeper_title" />
 
@@ -266,6 +281,7 @@
             android:id="@+id/away_defense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
             android:text="@string/mock_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/defense_title" />
@@ -309,6 +325,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mock_text"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/midfield_title" />
     </android.support.constraint.ConstraintLayout>
@@ -350,6 +367,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mock_text"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/forward_title" />
     </android.support.constraint.ConstraintLayout>
@@ -382,6 +400,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/mock_text"
+        android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/substitutes_title" />
 

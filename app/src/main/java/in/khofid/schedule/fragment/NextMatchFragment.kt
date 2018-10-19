@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.support.v4.onRefresh
@@ -25,9 +26,11 @@ class NextMatchFragment: Fragment(), MainView {
     private lateinit var rootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView = inflater!!.inflate(R.layout.match_layout, container, false)
+        rootView = inflater.inflate(R.layout.match_layout, container, false)
 
-        adapter = MainAdapter(rootView.context, matches)
+        adapter = MainAdapter(rootView.context, matches){
+            Toast.makeText(rootView.context, it.matchId.toString(), Toast.LENGTH_SHORT).show()
+        }
         rootView.match_rv.layoutManager = LinearLayoutManager(activity)
         rootView.match_rv.adapter = adapter
 

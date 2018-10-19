@@ -1,7 +1,10 @@
 package `in`.khofid.schedule.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Match(
     @SerializedName("idEvent")
     var matchId: Int? = null,
@@ -23,4 +26,4 @@ data class Match(
 
     @SerializedName("intAwayScore")
     var awayScore: Int? = null
-)
+): Parcelable

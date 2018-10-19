@@ -18,4 +18,6 @@
     <string name="midfield_title">Midfield</string>
     <string name="forward_title">Forward</string>
     <string name="substitutes_title">Substitutes</string>
+    <string name="title_activity_match_detail">MatchDetailActivity</string>
+    <string name="match_detail_title">Match Detail</string>
 </resources>
