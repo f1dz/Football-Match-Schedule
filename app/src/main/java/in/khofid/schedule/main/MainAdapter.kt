@@ -2,6 +2,7 @@ package `in`.khofid.schedule.main
 
 import `in`.khofid.schedule.R
 import `in`.khofid.schedule.model.Match
+import `in`.khofid.schedule.utils.toSimpleDate
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -24,7 +25,7 @@ class MainAdapter(private val ctx: Context, private var matches: List<Match>, pr
 class MatchViewHolder(view: View): RecyclerView.ViewHolder(view){
 
     fun bindItem(match: Match, listener: (Match) -> Unit) {
-        itemView.match_date.text = match.matchDate
+        itemView.match_date.text = match.matchDate?.toSimpleDate()
         itemView.home_team.text = match.homeTeam
         itemView.home_score.text = match.homeScore?.toString()
         itemView.away_team.text = match.awayTeam
