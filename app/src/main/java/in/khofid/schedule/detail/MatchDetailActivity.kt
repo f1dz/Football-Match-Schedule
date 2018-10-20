@@ -1,6 +1,10 @@
 package `in`.khofid.schedule.detail
 
 import `in`.khofid.schedule.R
+import `in`.khofid.schedule.R.drawable.ic_add_to_favorites
+import `in`.khofid.schedule.R.drawable.ic_added_to_favorites
+import `in`.khofid.schedule.db.Favorite
+import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.model.MatchDetail
 import `in`.khofid.schedule.model.Team
@@ -8,16 +12,29 @@ import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.normalize
 import `in`.khofid.schedule.utils.toSimpleDate
 import `in`.khofid.schedule.utils.visible
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_match_detail.*
 import kotlinx.android.synthetic.main.match_detail_layout.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 
 class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
     private lateinit var detailPresenter: MatchDetailPresenter
+
+    private var menuItem: Menu? = null
+    private lateinit var match: Match
+    private lateinit var id: String
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +43,35 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val match: Match = intent.getParcelableExtra("match")
+        match = intent.getParcelableExtra("match")
+        id = match.matchId.toString()
 
         detailPresenter = MatchDetailPresenter(this)
         detailPresenter.getMatchDetail(match.matchId!!)
 
+        favoriteState()
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        setFavorite()
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 finish()
+                true
+            }
+            R.id.add_to_favorite -> {
+                if(isFavorite) removeFromFavorite() else addToFavorite()
+
+                isFavorite = !isFavorite
+                setFavorite()
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -81,4 +116,49 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
         Picasso.get().load(teams.last().strTeamBadge).into(away_badge)
     }
 
+    private fun addToFavorite() {
+        try {
+            database.use {
+                insert(
+                    Favorite.TABLE_FAVORITE,
+                    Favorite.MATCH_ID to match.matchId
+                )
+            }
+            snackbar(scrollView, "Added to favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            snackbar(scrollView, e.localizedMessage).show()
+        }
+    }
+
+    private fun removeFromFavorite() {
+        try {
+            database.use {
+                delete(
+                    Favorite.TABLE_FAVORITE,
+                    "(MATCH_ID = {id})",
+                    "id" to id)
+            }
+            snackbar(scrollView, "Removed from favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            snackbar(scrollView, e.localizedMessage).show()
+        }
+    }
+
+    private fun setFavorite(){
+        if(isFavorite){
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
+        } else {
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
+        }
+    }
+
+    private fun favoriteState(){
+        database.use {
+            val result = select(Favorite.TABLE_FAVORITE)
+                .whereArgs("(MATCH_ID = {id})",
+                    "id" to id)
+            val favorite = result.parseList(classParser<Favorite>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
 }
