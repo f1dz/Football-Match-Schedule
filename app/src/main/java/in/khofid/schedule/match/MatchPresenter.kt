@@ -1,4 +1,4 @@
-package `in`.khofid.schedule.main
+package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.api.ApiRepository
 import `in`.khofid.schedule.api.TheSportDBApi
@@ -7,7 +7,7 @@ import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainPresenter(private val view: MainView) {
+class MatchPresenter(private val view: MatchView) {
     fun getLastMatchList(){
         view.showLoading()
         async(TheSportDBApi.getLastMatch())

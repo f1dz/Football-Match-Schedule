@@ -1,4 +1,4 @@
-package `in`.khofid.schedule.main
+package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.R
 import `in`.khofid.schedule.model.Match
@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.match_item.view.*
 
-class MainAdapter(private val ctx: Context, private var matches: List<Match>, private val listener: (Match) -> Unit): RecyclerView.Adapter<MatchViewHolder>() {
+class MatchAdapter(private val ctx: Context, private var matches: List<Match>, private val listener: (Match) -> Unit): RecyclerView.Adapter<MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder =
         MatchViewHolder(LayoutInflater.from(ctx).inflate(R.layout.match_item, parent, false))

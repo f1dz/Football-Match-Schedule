@@ -1,10 +1,7 @@
-package `in`.khofid.schedule.fragment
+package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.main.MainAdapter
-import `in`.khofid.schedule.main.MainPresenter
-import `in`.khofid.schedule.main.MainView
-import `in`.khofid.schedule.main.MatchDetailActivity
+import `in`.khofid.schedule.detail.MatchDetailActivity
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.visible
@@ -14,30 +11,28 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.Toast
 import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
-class PrevMatchFragment: Fragment(), MainView {
+class PrevMatchFragment: Fragment(), MatchView {
 
     private var matches: MutableList<Match> = mutableListOf()
-    private lateinit var adapter: MainAdapter
-    private lateinit var presenter: MainPresenter
+    private lateinit var adapter: MatchAdapter
+    private lateinit var presenter: MatchPresenter
     private lateinit var rootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
 
-        adapter = MainAdapter(rootView.context, matches) {
+        adapter = MatchAdapter(rootView.context, matches) {
             startActivity<MatchDetailActivity>("match" to it)
         }
         rootView.match_rv.layoutManager = LinearLayoutManager(activity)
         rootView.match_rv.adapter = adapter
 
-        presenter = MainPresenter(this)
+        presenter = MatchPresenter(this)
         presenter.getLastMatchList()
 
         rootView.swipe_refresh.onRefresh {

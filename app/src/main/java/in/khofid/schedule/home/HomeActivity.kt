@@ -1,8 +1,8 @@
 package `in`.khofid.schedule.home
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.fragment.PrevMatchFragment
-import `in`.khofid.schedule.fragment.NextMatchFragment
+import `in`.khofid.schedule.match.PrevMatchFragment
+import `in`.khofid.schedule.match.NextMatchFragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity

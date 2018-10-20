@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MatchDetailActivity"
+            android:name=".detail.MatchDetailActivity"
             android:label="@string/title_activity_match_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

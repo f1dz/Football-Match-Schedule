@@ -1,4 +1,4 @@
-package `in`.khofid.schedule.main
+package `in`.khofid.schedule.detail
 
 import `in`.khofid.schedule.R
 import `in`.khofid.schedule.model.Match
@@ -15,9 +15,9 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_match_detail.*
 import kotlinx.android.synthetic.main.match_detail_layout.*
 
-class MatchDetailActivity : AppCompatActivity(), MatchView {
+class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
-    private lateinit var presenter: MatchPresenter
+    private lateinit var detailPresenter: MatchDetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +28,8 @@ class MatchDetailActivity : AppCompatActivity(), MatchView {
 
         val match: Match = intent.getParcelableExtra("match")
 
-        presenter = MatchPresenter(this)
-        presenter.getMatchDetail(match.matchId!!)
+        detailPresenter = MatchDetailPresenter(this)
+        detailPresenter.getMatchDetail(match.matchId!!)
 
     }
 
@@ -73,7 +73,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchView {
         home_substitutes.text = match.strHomeLineupSubstitutes?.normalize()
         away_substitutes.text = match.strAwayLineupSubstitutes?.normalize()
 
-        presenter.getTeamDetail(match)
+        detailPresenter.getTeamDetail(match)
     }
 
     override fun showBadge(teams: ArrayList<Team>) {
