@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Football Match</string>
 
-    <string name="last_match_title">LAST MATCH</string>
-    <string name="next_match_title">NEXT MATCH</string>
+    <string name="prev_match_title">Prev. Match</string>
+    <string name="next_match_title">Next Match</string>
     <string name="home_badge_title">Home Badge</string>
     <string name="away_badge_title">Away Badge</string>
     <string name="goals_title">Goals</string>
 
+    <string name="lorem_ipsum">Lorem Ipsum</string>
     <string name="mock_score">0</string>
     <string name="static_vs">vs</string>
     <string name="shots_title">Shots</string>
@@ -18,4 +19,5 @@
     <string name="substitutes_title">Substitutes</string>
     <string name="title_activity_match_detail">MatchDetailActivity</string>
     <string name="match_detail_title">Match Detail</string>
+    <string name="favorites">Favorites</string>
 </resources>
