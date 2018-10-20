@@ -22,7 +22,7 @@ class TabAdapter(val ctx: Context, fm: FragmentManager): FragmentStatePagerAdapt
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when(position){
-            0 -> ctx.getString(R.string.last_match_title)
+            0 -> ctx.getString(R.string.prev_match_title)
             1 -> ctx.getString(R.string.next_match_title)
             else -> null
         }

@@ -10,6 +10,7 @@ import `in`.khofid.schedule.utils.toSimpleDate
 import `in`.khofid.schedule.utils.visible
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_match_detail.*
 import kotlinx.android.synthetic.main.match_detail_layout.*
@@ -23,11 +24,23 @@ class MatchDetailActivity : AppCompatActivity(), MatchView {
         setContentView(R.layout.activity_match_detail)
         setSupportActionBar(toolbar)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val match: Match = intent.getParcelableExtra("match")
 
         presenter = MatchPresenter(this)
         presenter.getMatchDetail(match.matchId!!)
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun showLoading() {
