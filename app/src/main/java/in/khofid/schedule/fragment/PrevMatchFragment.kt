@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
-class LastMatchFragment: Fragment(), MainView {
+class PrevMatchFragment: Fragment(), MainView {
 
     private var matches: MutableList<Match> = mutableListOf()
     private lateinit var adapter: MainAdapter

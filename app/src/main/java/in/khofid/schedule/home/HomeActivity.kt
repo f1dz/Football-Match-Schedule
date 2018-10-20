@@ -1,7 +1,7 @@
 package `in`.khofid.schedule.home
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.fragment.LastMatchFragment
+import `in`.khofid.schedule.fragment.PrevMatchFragment
 import `in`.khofid.schedule.fragment.NextMatchFragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -17,13 +17,13 @@ class HomeActivity: AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {item ->
             when (item.itemId) {
                 R.id.prev_match -> {
-                    loadFragment(savedInstanceState, LastMatchFragment())
+                    loadFragment(savedInstanceState, PrevMatchFragment())
                 }
                 R.id.next_match -> {
                     loadFragment(savedInstanceState, NextMatchFragment())
                 }
                 R.id.favorites -> {
-                    loadFragment(savedInstanceState, LastMatchFragment())
+                    loadFragment(savedInstanceState, PrevMatchFragment())
                 }
             }
             true

@@ -1,7 +1,7 @@
 package `in`.khofid.schedule.main
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.fragment.LastMatchFragment
+import `in`.khofid.schedule.fragment.PrevMatchFragment
 import `in`.khofid.schedule.fragment.NextMatchFragment
 import android.content.Context
 import android.support.v4.app.Fragment
@@ -12,9 +12,9 @@ class TabAdapter(val ctx: Context, fm: FragmentManager): FragmentStatePagerAdapt
 
     override fun getItem(position: Int): Fragment {
         return when(position){
-            0 -> LastMatchFragment()
+            0 -> PrevMatchFragment()
             1 -> NextMatchFragment()
-            else -> LastMatchFragment()
+            else -> PrevMatchFragment()
         }
     }
 
