@@ -7,6 +7,7 @@
     <string name="away_badge_title">Away Badge</string>
     <string name="goals_title">Goals</string>
 
+    <string name="lorem_ipsum">Lorem Ipsum</string>
     <string name="mock_score">0</string>
     <string name="static_vs">vs</string>
     <string name="shots_title">Shots</string>
