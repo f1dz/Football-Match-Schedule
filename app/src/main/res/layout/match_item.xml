@@ -100,5 +100,17 @@
             app:layout_constraintEnd_toEndOf="@id/match_date"
             app:layout_constraintStart_toStartOf="@id/match_date"
             app:layout_constraintTop_toBottomOf="@+id/match_date" />
+
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="invisible"
+            android:tint="@color/colorAccent"
+            android:src="@drawable/ic_added_to_favorites"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
