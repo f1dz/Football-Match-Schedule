@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/static_vs"
-            app:layout_constraintEnd_toEndOf="@+id/match_date"
-            app:layout_constraintStart_toStartOf="@+id/match_date"
-            app:layout_constraintTop_toBottomOf="@+id/match_date" />
+            app:layout_constraintEnd_toEndOf="@+id/match_time"
+            app:layout_constraintStart_toStartOf="@+id/match_time"
+            app:layout_constraintTop_toBottomOf="@+id/match_time" />
 
         <TextView
             android:id="@+id/home_score"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="@string/mock_score"
-            android:textSize="26sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/vs"
             app:layout_constraintEnd_toStartOf="@+id/vs"
@@ -51,20 +51,19 @@
 
         <TextView
             android:id="@+id/home_team"
+            style="@style/MatchDetailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:gravity="start"
-            android:lines="2"
             android:maxEms="6"
-            android:maxLines="2"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/home_score"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/away_score"
@@ -72,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/mock_score"
-            android:textSize="26sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/vs"
             app:layout_constraintStart_toEndOf="@+id/vs"
@@ -80,18 +79,37 @@
 
         <TextView
             android:id="@+id/away_team"
+            style="@style/MatchDetailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:gravity="end"
-            android:lines="2"
             android:maxEms="6"
-            android:maxLines="2"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/away_score" />
+
+        <TextView
+            android:id="@+id/match_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/match_date"
+            app:layout_constraintStart_toStartOf="@id/match_date"
+            app:layout_constraintTop_toBottomOf="@+id/match_date" />
+
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="invisible"
+            android:tint="@color/colorAccent"
+            android:src="@drawable/ic_added_to_favorites"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>

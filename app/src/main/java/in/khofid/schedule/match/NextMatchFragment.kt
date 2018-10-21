@@ -1,6 +1,8 @@
 package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.R
+import `in`.khofid.schedule.db.Favorite
+import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.detail.MatchDetailActivity
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.utils.invisible
@@ -13,6 +15,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -22,20 +27,25 @@ class NextMatchFragment: Fragment(), MatchView {
     private lateinit var adapter: MatchAdapter
     private lateinit var presenter: MatchPresenter
     private lateinit var rootView: View
+    private lateinit var favorites: List<Favorite>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
 
-        adapter = MatchAdapter(rootView.context, matches) {
-            startActivity<MatchDetailActivity>("match" to it)
-        }
+        getFavorites()
+
+        adapter = matchAdapter()
         rootView.match_rv.layoutManager = LinearLayoutManager(activity)
         rootView.match_rv.adapter = adapter
 
         presenter = MatchPresenter(this)
         presenter.getNextMatchList()
 
-        rootView.swipe_refresh.onRefresh { presenter.getNextMatchList() }
+        rootView.swipe_refresh.onRefresh {
+            getFavorites()
+            rootView.match_rv.adapter = matchAdapter()
+            presenter.getNextMatchList()
+        }
 
         return rootView
     }
@@ -53,5 +63,19 @@ class NextMatchFragment: Fragment(), MatchView {
         matches.clear()
         matches.addAll(data)
         adapter.notifyDataSetChanged()
+    }
+
+    private fun matchAdapter() =
+        MatchAdapter(rootView.context, matches, favorites) {
+            startActivity<MatchDetailActivity>("match" to it)
+        }
+
+    private fun getFavorites(){
+        var fav: List<Favorite> = listOf()
+        ctx.database.use {
+            val result = select(Favorite.TABLE_FAVORITE)
+            fav = result.parseList(classParser())
+        }
+        favorites = fav
     }
 }
