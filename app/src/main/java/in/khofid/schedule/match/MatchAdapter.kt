@@ -43,10 +43,6 @@ class MatchViewHolder(view: View): RecyclerView.ViewHolder(view){
             itemView.favorite.visible()
         else itemView.favorite.invisible()
 
-//        listOf<Favorite>()
-
-//        itemView.favorite.visibility = if()
-
         itemView.setOnClickListener { listener(match) }
     }
 
