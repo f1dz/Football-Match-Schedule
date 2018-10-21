@@ -10,12 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.favorites_item.view.*
+import kotlinx.android.synthetic.main.match_item.view.*
 
 class MatchAdapter(private val ctx: Context, private var matches: List<Match>, private val favorites: List<Favorite>, private val listener: (Match) -> Unit): RecyclerView.Adapter<MatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder =
-        MatchViewHolder(LayoutInflater.from(ctx).inflate(R.layout.favorites_item, parent, false))
+        MatchViewHolder(LayoutInflater.from(ctx).inflate(R.layout.match_item, parent, false))
 
     override fun getItemCount(): Int = matches.size
 
