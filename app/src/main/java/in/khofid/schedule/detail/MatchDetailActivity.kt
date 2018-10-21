@@ -35,7 +35,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     private lateinit var match: Match
     private lateinit var id: String
     private var isFavorite: Boolean = false
-    private lateinit var homeBade: String
+    private lateinit var homeBadge: String
     private lateinit var awayBadge: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,7 +114,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     }
 
     override fun showBadge(teams: ArrayList<Team>) {
-        homeBade = teams.first().strTeamBadge!!
+        homeBadge = teams.first().strTeamBadge!!
         awayBadge = teams.last().strTeamBadge!!
         Picasso.get().load(teams.first().strTeamBadge).into(home_badge)
         Picasso.get().load(teams.last().strTeamBadge).into(away_badge)
@@ -128,9 +128,11 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
                     Favorite.MATCH_ID to match.matchId,
                     Favorite.MATCH_DATE to match.matchDate,
                     Favorite.MATCH_TIME to match.matchTime,
+                    Favorite.MATCH_HOME_TEAM_ID to match.homeTeamId,
                     Favorite.MATCH_HOME_TEAM to match.homeTeam,
                     Favorite.MATCH_HOME_SCORE to match.homeScore,
-                    Favorite.MATCH_HOME_BADGE to homeBade,
+                    Favorite.MATCH_HOME_BADGE to homeBadge,
+                    Favorite.MATCH_AWAY_TEAM_ID to match.awayTeamId,
                     Favorite.MATCH_AWAY_TEAM to match.awayTeam,
                     Favorite.MATCH_AWAY_SCORE to match.awayScore,
                     Favorite.MATCH_AWAY_BADGE to awayBadge

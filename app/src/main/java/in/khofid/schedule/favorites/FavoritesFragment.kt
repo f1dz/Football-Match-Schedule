@@ -67,7 +67,9 @@ class FavoritesFragment: Fragment() {
             fav.matchId?.toInt(),
             fav.matchDate,
             fav.matchTime,
+            fav.matchHomeTeamId,
             fav.matchHomeTeam,
+            fav.matchAwayTeamId,
             fav.matchAwayTeam,
             fav.matchHomeScore,
             fav.matchAwayScore)

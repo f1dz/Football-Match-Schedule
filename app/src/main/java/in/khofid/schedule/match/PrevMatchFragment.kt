@@ -62,6 +62,11 @@ class PrevMatchFragment: Fragment(), MatchView {
         swipe_refresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
+        presenter.processBadge(ctx, data)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun processBadge() {
         adapter.notifyDataSetChanged()
     }
 

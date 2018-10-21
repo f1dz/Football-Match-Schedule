@@ -6,4 +6,5 @@ interface MatchView {
     fun showLoading()
     fun hideLoading()
     fun showMatchList(data: List<Match>)
+    fun processBadge()
 }
