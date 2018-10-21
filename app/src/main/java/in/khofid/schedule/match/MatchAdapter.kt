@@ -3,15 +3,13 @@ package `in`.khofid.schedule.match
 import `in`.khofid.schedule.R
 import `in`.khofid.schedule.db.Favorite
 import `in`.khofid.schedule.model.Match
-import `in`.khofid.schedule.utils.invisible
-import `in`.khofid.schedule.utils.toLocalDate
-import `in`.khofid.schedule.utils.toLocalTime
-import `in`.khofid.schedule.utils.visible
+import `in`.khofid.schedule.utils.*
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.match_item.view.*
 
 class MatchAdapter(private val ctx: Context, private var matches: List<Match>, private val favorites: List<Favorite>, private val listener: (Match) -> Unit): RecyclerView.Adapter<MatchViewHolder>() {
@@ -38,6 +36,15 @@ class MatchViewHolder(view: View): RecyclerView.ViewHolder(view){
         itemView.home_score.text = match.homeScore?.toString()
         itemView.away_team.text = match.awayTeam
         itemView.away_score.text = match.awayScore?.toString()
+
+        val homeTeamBadge = match?.getHomeTeamDetail(itemView.context)
+        val awayTeamBadge = match?.getAwayTeamDetail(itemView.context)
+
+        if(homeTeamBadge.isNotEmpty())
+            Picasso.get().load(homeTeamBadge).into(itemView.home_team_badge)
+
+        if(awayTeamBadge.isNotEmpty())
+            Picasso.get().load(awayTeamBadge).into(itemView.away_team_badge)
 
         if(check.size > 0)
             itemView.favorite.visible()
