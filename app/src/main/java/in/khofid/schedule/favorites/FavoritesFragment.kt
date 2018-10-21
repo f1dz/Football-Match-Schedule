@@ -3,6 +3,8 @@ package `in`.khofid.schedule.favorites
 import `in`.khofid.schedule.R
 import `in`.khofid.schedule.db.Favorite
 import `in`.khofid.schedule.db.database
+import `in`.khofid.schedule.detail.MatchDetailActivity
+import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.utils.invisible
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.favorites_layout.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.startActivity
 
 class FavoritesFragment: Fragment() {
 
@@ -29,7 +32,8 @@ class FavoritesFragment: Fragment() {
         rootView = inflater.inflate(R.layout.favorites_layout, container, false)
 
         adapter = FavoritesAdapter(rootView.context, favorites) {
-//            startActivity<MatchDetailActivity>("match" to it)
+            val match = castFavoriteToMatch(it)
+            startActivity<MatchDetailActivity>("match" to match)
         }
 
         progressBar = rootView.progressbar
@@ -56,5 +60,16 @@ class FavoritesFragment: Fragment() {
             adapter.notifyDataSetChanged()
             progressBar.invisible()
         }
+    }
+
+    private fun castFavoriteToMatch(fav: Favorite): Match{
+        return Match(
+            fav.matchId?.toInt(),
+            fav.matchDate,
+            fav.matchTime,
+            fav.matchHomeTeam,
+            fav.matchAwayTeam,
+            fav.matchHomeScore,
+            fav.matchAwayScore)
     }
 }
