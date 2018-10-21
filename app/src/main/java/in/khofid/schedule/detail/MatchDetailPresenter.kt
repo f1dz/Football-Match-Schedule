@@ -43,9 +43,7 @@ class MatchDetailPresenter(private val detailView: MatchDetailView) {
 
             uiThread {
                 detailView.hideLoading()
-                var teams: ArrayList<Team> = ArrayList()
-                teams.add(homeTeam.teams.first())
-                teams.add(awayTeam.teams.first())
+                val teams: ArrayList<Team> = arrayListOf(homeTeam.teams.first(),awayTeam.teams.first())
                 detailView.showBadge(teams)
             }
         }
