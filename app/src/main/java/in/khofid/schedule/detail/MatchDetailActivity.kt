@@ -69,7 +69,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
                 true
             }
             R.id.add_to_favorite -> {
-                if(isFavorite) removeFromFavorite() else addToFavorite()
+                if (isFavorite) removeFromFavorite() else addToFavorite()
 
                 isFavorite = !isFavorite
                 setFavorite()
@@ -121,27 +121,31 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     }
 
     private fun addToFavorite() {
-        try {
-            database.use {
-                insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.MATCH_ID to match.matchId,
-                    Favorite.MATCH_DATE to match.matchDate,
-                    Favorite.MATCH_TIME to match.matchTime,
-                    Favorite.MATCH_HOME_TEAM_ID to match.homeTeamId,
-                    Favorite.MATCH_HOME_TEAM to match.homeTeam,
-                    Favorite.MATCH_HOME_SCORE to match.homeScore,
-                    Favorite.MATCH_HOME_BADGE to homeBadge,
-                    Favorite.MATCH_AWAY_TEAM_ID to match.awayTeamId,
-                    Favorite.MATCH_AWAY_TEAM to match.awayTeam,
-                    Favorite.MATCH_AWAY_SCORE to match.awayScore,
-                    Favorite.MATCH_AWAY_BADGE to awayBadge
-                )
+
+        if (::homeBadge.isInitialized && ::awayBadge.isInitialized) {
+            try {
+                database.use {
+                    insert(
+                        Favorite.TABLE_FAVORITE,
+                        Favorite.MATCH_ID to match.matchId,
+                        Favorite.MATCH_DATE to match.matchDate,
+                        Favorite.MATCH_TIME to match.matchTime,
+                        Favorite.MATCH_HOME_TEAM_ID to match.homeTeamId,
+                        Favorite.MATCH_HOME_TEAM to match.homeTeam,
+                        Favorite.MATCH_HOME_SCORE to match.homeScore,
+                        Favorite.MATCH_HOME_BADGE to homeBadge,
+                        Favorite.MATCH_AWAY_TEAM_ID to match.awayTeamId,
+                        Favorite.MATCH_AWAY_TEAM to match.awayTeam,
+                        Favorite.MATCH_AWAY_SCORE to match.awayScore,
+                        Favorite.MATCH_AWAY_BADGE to awayBadge
+                    )
+                }
+                snackbar(scrollView, "Added to favorite").show()
+            } catch (e: SQLiteConstraintException) {
+                snackbar(scrollView, e.localizedMessage).show()
             }
-            snackbar(scrollView, "Added to favorite").show()
-        } catch (e: SQLiteConstraintException) {
-            snackbar(scrollView, e.localizedMessage).show()
-        }
+        } else isFavorite = !isFavorite
+
     }
 
     private fun removeFromFavorite() {
@@ -150,7 +154,8 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
                 delete(
                     Favorite.TABLE_FAVORITE,
                     "(MATCH_ID = {id})",
-                    "id" to id)
+                    "id" to id
+                )
             }
             snackbar(scrollView, "Removed from favorite").show()
         } catch (e: SQLiteConstraintException) {
@@ -158,19 +163,21 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
         }
     }
 
-    private fun setFavorite(){
-        if(isFavorite){
+    private fun setFavorite() {
+        if (isFavorite) {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
         } else {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
         }
     }
 
-    private fun favoriteState(){
+    private fun favoriteState() {
         database.use {
             val result = select(Favorite.TABLE_FAVORITE)
-                .whereArgs("(MATCH_ID = {id})",
-                    "id" to id)
+                .whereArgs(
+                    "(MATCH_ID = {id})",
+                    "id" to id
+                )
             val favorite = result.parseList(classParser<Favorite>())
             if (!favorite.isEmpty()) isFavorite = true
         }
