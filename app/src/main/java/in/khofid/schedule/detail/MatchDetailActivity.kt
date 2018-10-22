@@ -8,10 +8,7 @@ import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.model.MatchDetail
 import `in`.khofid.schedule.model.Team
-import `in`.khofid.schedule.utils.invisible
-import `in`.khofid.schedule.utils.normalize
-import `in`.khofid.schedule.utils.toSimpleDate
-import `in`.khofid.schedule.utils.visible
+import `in`.khofid.schedule.utils.*
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -91,6 +88,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
     override fun showMatch(matches: List<MatchDetail>) {
         val match = matches.first()
         match_date.text = match.dateEvent?.toSimpleDate()
+        match_time.text = match.strTime?.toLocalTime()
         home_team.text = match.strHomeTeam
         away_team.text = match.strAwayTeam
         home_score.text = match.intHomeScore?.toString()
