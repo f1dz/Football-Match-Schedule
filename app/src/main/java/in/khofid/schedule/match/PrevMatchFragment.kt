@@ -13,7 +13,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.match_layout.*
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -59,7 +58,7 @@ class PrevMatchFragment: Fragment(), MatchView {
     }
 
     override fun showMatchList(data: List<Match>) {
-        swipe_refresh.isRefreshing = false
+        rootView.swipe_refresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
         presenter.processBadge(ctx, data)

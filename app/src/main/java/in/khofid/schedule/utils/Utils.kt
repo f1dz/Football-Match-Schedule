@@ -18,15 +18,17 @@ fun String.normalize(): String {
 }
 
 fun String.toSimpleDate(): String {
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-    val format = SimpleDateFormat("EEE, d MMM yyyy")
+    val localeId = Locale("id", "ID")
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", localeId)
+    val format = SimpleDateFormat("EEE, d MMM yyyy", localeId)
     val date: Date = dateFormat.parse(this)
     return format.format(date)
 }
 
 fun String.toLocalTime(): String {
     val timeStr = this
-    val df = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+    val localeId = Locale("id", "ID")
+    val df = SimpleDateFormat("HH:mm", localeId)
     df.timeZone = TimeZone.getTimeZone("UTC")
     val date = df.parse(timeStr)
     df.timeZone = TimeZone.getDefault()
@@ -35,7 +37,8 @@ fun String.toLocalTime(): String {
 
 fun String.toLocalDate(time: String): String {
     val dt = this + " " + time
-    val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+    val localeId = Locale("id", "ID")
+    val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", localeId)
     val format = SimpleDateFormat("EEE, d MMM yyyy")
     df.timeZone = TimeZone.getTimeZone("UTC")
     val date = df.parse(dt)
