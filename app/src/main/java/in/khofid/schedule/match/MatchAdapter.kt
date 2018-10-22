@@ -37,14 +37,11 @@ class MatchViewHolder(view: View): RecyclerView.ViewHolder(view){
         itemView.away_team.text = match.awayTeam
         itemView.away_score.text = match.awayScore?.toString()
 
-        val homeTeamBadge = match?.getHomeTeamDetail(itemView.context)
-        val awayTeamBadge = match?.getAwayTeamDetail(itemView.context)
+        val homeTeam = match.dbGetTeam(itemView.context, match.homeTeamId!!)
+        val awayTeam = match.dbGetTeam(itemView.context, match.awayTeamId!!)
 
-        if(homeTeamBadge.isNotEmpty())
-            Picasso.get().load(homeTeamBadge).into(itemView.home_team_badge)
-
-        if(awayTeamBadge.isNotEmpty())
-            Picasso.get().load(awayTeamBadge).into(itemView.away_team_badge)
+        Picasso.get().load(homeTeam?.getBadge()).into(itemView.home_team_badge)
+        Picasso.get().load(awayTeam?.getBadge()).into(itemView.away_team_badge)
 
         if(check.size > 0)
             itemView.favorite.visible()
