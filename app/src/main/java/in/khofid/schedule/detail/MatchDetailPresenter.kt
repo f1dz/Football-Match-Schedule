@@ -1,4 +1,4 @@
-package `in`.khofid.schedule.main
+package `in`.khofid.schedule.detail
 
 import `in`.khofid.schedule.api.ApiRepository
 import `in`.khofid.schedule.api.TheSportDBApi
@@ -10,9 +10,9 @@ import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MatchPresenter(private val view: MatchView) {
+class MatchDetailPresenter(private val detailView: MatchDetailView) {
     fun getMatchDetail(matchId: Int){
-        view.showLoading()
+        detailView.showLoading()
         doAsync {
             val data = Gson().fromJson(
                     ApiRepository().doRequest(TheSportDBApi.getMatchDetail(matchId)),
@@ -20,14 +20,14 @@ class MatchPresenter(private val view: MatchView) {
             )
 
             uiThread {
-                view.hideLoading()
-                view.showMatch(data.events)
+                detailView.hideLoading()
+                detailView.showMatch(data.events)
             }
         }
     }
 
     fun getTeamDetail(match: MatchDetail){
-        view.showLoading()
+        detailView.showLoading()
         doAsync {
             val homeTeam = Gson().fromJson(
                 ApiRepository().doRequest(
@@ -42,11 +42,9 @@ class MatchPresenter(private val view: MatchView) {
             )
 
             uiThread {
-                view.hideLoading()
-                var teams: ArrayList<Team> = ArrayList()
-                teams.add(homeTeam.teams.first())
-                teams.add(awayTeam.teams.first())
-                view.showBadge(teams)
+                detailView.hideLoading()
+                val teams: ArrayList<Team> = arrayListOf(homeTeam.teams.first(),awayTeam.teams.first())
+                detailView.showBadge(teams)
             }
         }
 

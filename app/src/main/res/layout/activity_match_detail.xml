@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.khofid.schedule.main.MatchDetailActivity">
+    tools:context="in.khofid.schedule.detail.MatchDetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -29,6 +29,7 @@
         android:layout_height="wrap_content" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_marginTop="64dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

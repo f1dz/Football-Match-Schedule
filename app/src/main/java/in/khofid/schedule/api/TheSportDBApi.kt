@@ -7,7 +7,7 @@ object TheSportDBApi {
 
     const val ID_LEAGUE = 4328
 
-    fun UriCommon(): Uri.Builder {
+    fun uriCommon(): Uri.Builder {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
             .appendPath("api")
             .appendPath("v1")
@@ -16,7 +16,7 @@ object TheSportDBApi {
     }
 
     fun getLastMatch(): String {
-        return UriCommon()
+        return uriCommon()
             .appendPath("eventspastleague.php")
             .appendQueryParameter("id", ID_LEAGUE.toString())
             .build()
@@ -24,7 +24,7 @@ object TheSportDBApi {
     }
 
     fun getNextMatch(): String {
-        return UriCommon()
+        return uriCommon()
             .appendPath("eventsnextleague.php")
             .appendQueryParameter("id", ID_LEAGUE.toString())
             .build()
@@ -32,7 +32,7 @@ object TheSportDBApi {
     }
 
     fun getMatchDetail(matchId: Int?): String {
-        return UriCommon()
+        return uriCommon()
             .appendPath("lookupevent.php")
             .appendQueryParameter("id", matchId.toString())
             .build()
@@ -40,7 +40,7 @@ object TheSportDBApi {
     }
 
     fun getTeamDetail(teamId: Int): String{
-        return UriCommon()
+        return uriCommon()
             .appendPath("lookupteam.php")
             .appendQueryParameter("id", teamId.toString())
             .build()
