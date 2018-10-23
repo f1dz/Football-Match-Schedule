@@ -1,9 +1,10 @@
-package `in`.khofid.schedule.main
+package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.model.Match
 
-interface MainView {
+interface MatchView {
     fun showLoading()
     fun hideLoading()
     fun showMatchList(data: List<Match>)
+    fun processBadge()
 }
