@@ -30,6 +30,9 @@ android {
             coroutines "enable"
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {

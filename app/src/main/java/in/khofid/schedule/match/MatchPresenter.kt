@@ -7,12 +7,15 @@ import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.model.MatchResponse
 import `in`.khofid.schedule.model.Team
 import `in`.khofid.schedule.model.TeamResponse
+import `in`.khofid.schedule.utils.CoroutineContextProvider
 import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.provider.SyncStateContract.Helpers.insert
 import android.util.Log
 import com.google.gson.Gson
+import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.selects.select
+import org.jetbrains.anko.coroutines.experimental.bg
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
@@ -20,7 +23,12 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.uiThread
 
-class MatchPresenter(private val view: MatchView) {
+class MatchPresenter(
+    private val view: MatchView,
+    private val apiRepository: ApiRepository = ApiRepository(),
+    private val gson: Gson = Gson(),
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
+) {
     fun getLastMatchList() {
         view.showLoading()
         async(TheSportDBApi.getLastMatch())
@@ -32,16 +40,16 @@ class MatchPresenter(private val view: MatchView) {
     }
 
     fun async(match: String) {
-        doAsync {
-            val data = Gson().fromJson(
-                ApiRepository().doRequest(match),
-                MatchResponse::class.java
-            )
-
-            uiThread {
-                view.hideLoading()
-                view.showMatchList(data.events)
+        async(context.main) {
+            val data = bg {
+                gson.fromJson(
+                    apiRepository.doRequest(match),
+                    MatchResponse::class.java
+                )
             }
+            view.showMatchList(data.await().events)
+            view.hideLoading()
+
         }
     }
 
