@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ScrollView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_match_detail.*
 import kotlinx.android.synthetic.main.match_detail_layout.*
@@ -138,9 +139,9 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
                         Favorite.MATCH_AWAY_BADGE to awayBadge
                     )
                 }
-                snackbar(scrollView, "Added to favorite").show()
+                scrollView.snackbar("Added to favorite").show()
             } catch (e: SQLiteConstraintException) {
-                snackbar(scrollView, e.localizedMessage).show()
+                scrollView.snackbar(e.localizedMessage).show()
             }
         } else isFavorite = !isFavorite
 
@@ -151,13 +152,13 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
             database.use {
                 delete(
                     Favorite.TABLE_FAVORITE,
-                    "(MATCH_ID = {id})",
+                    "(${Favorite.MATCH_ID} = {id})",
                     "id" to id
                 )
             }
-            snackbar(scrollView, "Removed from favorite").show()
+            scrollView.snackbar("Removed from favorite").show()
         } catch (e: SQLiteConstraintException) {
-            snackbar(scrollView, e.localizedMessage).show()
+            scrollView.snackbar(e.localizedMessage).show()
         }
     }
 
@@ -173,7 +174,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
         database.use {
             val result = select(Favorite.TABLE_FAVORITE)
                 .whereArgs(
-                    "(MATCH_ID = {id})",
+                    "(${Favorite.MATCH_ID} = {id})",
                     "id" to id
                 )
             val favorite = result.parseList(classParser<Favorite>())
