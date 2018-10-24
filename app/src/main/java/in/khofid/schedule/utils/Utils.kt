@@ -39,13 +39,9 @@ fun String.toLocalDate(time: String): String {
     val dt = this + " " + time
     val localeId = Locale("id", "ID")
     val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", localeId)
-    val format = SimpleDateFormat("EEE, d MMM yyyy")
+    val format = SimpleDateFormat("EEE, d MMM yyyy", localeId)
     df.timeZone = TimeZone.getTimeZone("UTC")
     val date = df.parse(dt)
     format.timeZone = TimeZone.getDefault()
     return format.format(date)
-}
-
-fun Int.toStringVoidNull(): String {
-    return if(this == null) "-" else this.toString()
 }

@@ -50,7 +50,7 @@ class FavoritesFragment: Fragment() {
         return rootView
     }
 
-    fun showFavorite(){
+    private fun showFavorite(){
         context?.database?.use {
             swipeRefresh.isRefreshing = false
             val result = select(Favorite.TABLE_FAVORITE)

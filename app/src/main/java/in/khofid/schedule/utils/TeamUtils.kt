@@ -13,7 +13,7 @@ fun Match.dbGetTeam(ctx: Context, teamId: Int) : Team? {
     try {
         ctx.database.use {
             val result = select(Team.TABLE_TEAM)
-                .whereArgs("(TEAM_ID = {id})", "id" to teamId)
+                .whereArgs("(${Team.TEAM_ID} = {id})", "id" to teamId)
             teams = result.parseList(classParser())
         }
 
