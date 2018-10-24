@@ -11,18 +11,18 @@ object TheSportDBApi {
     }
 
     fun getLastMatch(): String {
-        return uriCommon() + "eventspastleague.php?id=" + ID_LEAGUE.toString()
+        return uriCommon() + "/eventspastleague.php?id=" + ID_LEAGUE.toString()
     }
 
     fun getNextMatch(): String {
-        return uriCommon() + "eventsnextleague.php?id=" + ID_LEAGUE.toString()
+        return uriCommon() + "/eventsnextleague.php?id=" + ID_LEAGUE.toString()
     }
 
     fun getMatchDetail(matchId: Int?): String {
-        return uriCommon() + "lookupevent.php?id=" + matchId.toString()
+        return uriCommon() + "/lookupevent.php?id=" + matchId.toString()
     }
 
     fun getTeamDetail(teamId: Int): String {
-        return uriCommon() + "lookupteam.php?id=" + teamId.toString()
+        return uriCommon() + "/lookupteam.php?id=" + teamId.toString()
     }
 }

@@ -18,6 +18,7 @@ class MatchPresenterTest {
     @Mock private lateinit var view: MatchView
     @Mock private lateinit var gson: Gson
     @Mock private lateinit var apiRepository: ApiRepository
+    @Mock private lateinit var matches: List<Match>
 
     private lateinit var presenter: MatchPresenter
 
@@ -29,7 +30,6 @@ class MatchPresenterTest {
 
     @Test
     fun getLastMatchList() {
-        val matches: MutableList<Match> = mutableListOf()
         val response = MatchResponse(matches)
 
         `when` (
@@ -45,7 +45,6 @@ class MatchPresenterTest {
 
     @Test
     fun getNextMatchList() {
-        val matches: MutableList<Match> = mutableListOf()
         val response = MatchResponse(matches)
 
         `when` (

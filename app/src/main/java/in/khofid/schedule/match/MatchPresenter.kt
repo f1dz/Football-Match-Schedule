@@ -49,7 +49,6 @@ class MatchPresenter(
             }
             view.showMatchList(data.await().events)
             view.hideLoading()
-
         }
     }
 
