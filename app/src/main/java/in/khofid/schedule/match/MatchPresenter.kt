@@ -61,13 +61,13 @@ class MatchPresenter(
                     try {
                         ctx.database.use {
                             val result = select(Team.TABLE_TEAM)
-                                .whereArgs("(TEAM_ID = {id})", "id" to it.homeTeamId!!)
+                                .whereArgs("(${Team.TEAM_ID} = {id})", "id" to it.homeTeamId!!)
                             homeTeams = result.parseList(classParser())
                         }
 
                         ctx.database.use {
                             val result = select(Team.TABLE_TEAM)
-                                .whereArgs("(TEAM_ID = {id})", "id" to it.awayTeamId!!)
+                                .whereArgs("(${Team.TEAM_ID} = {id})", "id" to it.awayTeamId!!)
                             awayTeams = result.parseList(classParser())
                         }
 
