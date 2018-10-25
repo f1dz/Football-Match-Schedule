@@ -25,4 +25,11 @@ object TheSportDBApi {
     fun getTeamDetail(teamId: Int): String {
         return uriCommon() + "/lookupteam.php?id=" + teamId.toString()
     }
+
+    fun getTeams(league: String?): String {
+        return uriCommon() + "/search_all_teams.php?l=" + league
+    }
+
+    fun getTeamDetail(teamId: String?) = uriCommon() + "/lookupteam.php?id=" + teamId
+
 }

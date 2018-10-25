@@ -5,6 +5,7 @@ import `in`.khofid.schedule.favorites.FavoritesFragment
 import `in`.khofid.schedule.match.MatchesFragment
 import `in`.khofid.schedule.match.NextMatchFragment
 import `in`.khofid.schedule.match.PrevMatchFragment
+import `in`.khofid.schedule.team.TeamsFragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -19,6 +20,7 @@ class HomeActivity: AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {item ->
             when (item.itemId) {
                 R.id.matches -> loadFragment(savedInstanceState, MatchesFragment())
+                R.id.teams -> loadFragment(savedInstanceState, TeamsFragment())
                 R.id.favorites -> loadFragment(savedInstanceState, FavoritesFragment())
             }
             true

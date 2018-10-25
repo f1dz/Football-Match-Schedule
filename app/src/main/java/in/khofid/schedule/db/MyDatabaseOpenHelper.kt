@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
 
-class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavoriteMatch.db", null, 4) {
+class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavoriteMatch.db", null, 6) {
 
     companion object {
         private var instance: MyDatabaseOpenHelper? = null
@@ -41,7 +41,21 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
             Team.TEAM_ID to INTEGER + UNIQUE,
             Team.TEAM_NAME to TEXT,
             Team.TEAM_ALTERNATE to TEXT,
-            Team.TEAM_BADGE to TEXT
+            Team.TEAM_BADGE to TEXT,
+            Team.TEAM_FORMED_YEAR to INTEGER,
+            Team.TEAM_STADIUM to TEXT,
+            Team.TEAM_STADIUM_THUMB to TEXT,
+            Team.TEAM_STADIUM_LOCATION to TEXT,
+            Team.TEAM_STADIUM_CAPACITY to TEXT,
+            Team.TEAM_DESCRIPTION to TEXT,
+            Team.TEAM_MANAGER to TEXT,
+            Team.TEAM_WEBSITE to TEXT,
+            Team.TEAM_FACEBOOK to TEXT,
+            Team.TEAM_TWITTER to TEXT,
+            Team.TEAM_INSTAGRAM to TEXT,
+            Team.TEAM_COUNTRY to TEXT,
+            Team.TEAM_BANNER to TEXT,
+            Team.TEAM_YOUTUBE to TEXT
         )
     }
 
