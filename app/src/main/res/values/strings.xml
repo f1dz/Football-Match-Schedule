@@ -20,4 +20,5 @@
     <string name="title_activity_match_detail">MatchDetailActivity</string>
     <string name="match_detail_title">Match Detail</string>
     <string name="favorites">Favorites</string>
+    <string name="matches">Matches</string>
 </resources>
