@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.team_item.view.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class TeamsAdapter(private val ctx: Context, private val teams: List<Team>, private val listener: (Team) -> Unit) :
+class TeamsAdapter(private val ctx: Context, private var teams: List<Team>, private val listener: (Team) -> Unit) :
     RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -21,6 +21,11 @@ class TeamsAdapter(private val ctx: Context, private val teams: List<Team>, priv
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(teams[position], listener)
+    }
+
+    fun updateList(data: List<Team>) {
+        teams = data
+        notifyDataSetChanged()
     }
 }
 
