@@ -19,19 +19,11 @@ class HomeActivity: AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {item ->
             when (item.itemId) {
                 R.id.matches -> loadFragment(savedInstanceState, MatchesFragment())
-                R.id.prev_match -> {
-                    loadFragment(savedInstanceState, PrevMatchFragment())
-                }
-                R.id.next_match -> {
-                    loadFragment(savedInstanceState, NextMatchFragment())
-                }
-                R.id.favorites -> {
-                    loadFragment(savedInstanceState, FavoritesFragment())
-                }
+                R.id.favorites -> loadFragment(savedInstanceState, FavoritesFragment())
             }
             true
         }
-        bottom_navigation.selectedItemId = R.id.prev_match
+        bottom_navigation.selectedItemId = R.id.matches
 
     }
 

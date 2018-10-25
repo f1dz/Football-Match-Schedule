@@ -9,13 +9,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/prev_match"
-        android:enabled="true"
-        android:icon="@drawable/ic_trophy"
-        android:title="@string/prev_match_title"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/next_match"
         android:icon="@drawable/ic_schedule"
         android:title="@string/next_match_title"
