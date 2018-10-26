@@ -24,6 +24,8 @@
             android:label="@string/title_activity_match_detail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".detail.TeamDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

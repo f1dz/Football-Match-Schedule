@@ -1,6 +1,7 @@
 package `in`.khofid.schedule.team
 
 import `in`.khofid.schedule.R
+import `in`.khofid.schedule.detail.TeamDetailActivity
 import `in`.khofid.schedule.model.Team
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.visible
@@ -13,8 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import kotlinx.android.synthetic.main.teams_container.view.*
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.dip
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.startActivity
 
 class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
 
@@ -33,8 +33,9 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
         rootView.league_spinner.adapter = spinnerAdapter
 
         adapter = TeamsAdapter(ctx, teams) {
-            toast("Clicked ${it.strTeam}").show()
+            startActivity<TeamDetailActivity>("team" to it)
         }
+
         rootView.teams_rv.layoutManager = LinearLayoutManager(activity)
         rootView.teams_rv.adapter = adapter
 

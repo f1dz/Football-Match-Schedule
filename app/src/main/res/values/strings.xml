@@ -24,6 +24,7 @@
     <string name="teams">Teams</string>
     <string name="team_badge">Team Badge</string>
     <string name="search_title">Search</string>
+    <string name="team_detail_title">Team Detail</string>
 
     <array name="league">
         <item>English Premier League</item>
