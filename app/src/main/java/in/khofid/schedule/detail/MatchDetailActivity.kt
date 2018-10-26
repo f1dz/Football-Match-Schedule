@@ -3,7 +3,7 @@ package `in`.khofid.schedule.detail
 import `in`.khofid.schedule.R
 import `in`.khofid.schedule.R.drawable.ic_add_to_favorites
 import `in`.khofid.schedule.R.drawable.ic_added_to_favorites
-import `in`.khofid.schedule.db.Favorite
+import `in`.khofid.schedule.db.FavoriteMatch
 import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.model.MatchDetail
@@ -124,18 +124,18 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
             try {
                 database.use {
                     insert(
-                        Favorite.TABLE_FAVORITE,
-                        Favorite.MATCH_ID to match.matchId,
-                        Favorite.MATCH_DATE to match.matchDate,
-                        Favorite.MATCH_TIME to match.matchTime,
-                        Favorite.MATCH_HOME_TEAM_ID to match.homeTeamId,
-                        Favorite.MATCH_HOME_TEAM to match.homeTeam,
-                        Favorite.MATCH_HOME_SCORE to match.homeScore,
-                        Favorite.MATCH_HOME_BADGE to homeBadge,
-                        Favorite.MATCH_AWAY_TEAM_ID to match.awayTeamId,
-                        Favorite.MATCH_AWAY_TEAM to match.awayTeam,
-                        Favorite.MATCH_AWAY_SCORE to match.awayScore,
-                        Favorite.MATCH_AWAY_BADGE to awayBadge
+                        FavoriteMatch.TABLE_FAVORITE_MATCH,
+                        FavoriteMatch.MATCH_ID to match.matchId,
+                        FavoriteMatch.MATCH_DATE to match.matchDate,
+                        FavoriteMatch.MATCH_TIME to match.matchTime,
+                        FavoriteMatch.MATCH_HOME_TEAM_ID to match.homeTeamId,
+                        FavoriteMatch.MATCH_HOME_TEAM to match.homeTeam,
+                        FavoriteMatch.MATCH_HOME_SCORE to match.homeScore,
+                        FavoriteMatch.MATCH_HOME_BADGE to homeBadge,
+                        FavoriteMatch.MATCH_AWAY_TEAM_ID to match.awayTeamId,
+                        FavoriteMatch.MATCH_AWAY_TEAM to match.awayTeam,
+                        FavoriteMatch.MATCH_AWAY_SCORE to match.awayScore,
+                        FavoriteMatch.MATCH_AWAY_BADGE to awayBadge
                     )
                 }
                 scrollView.snackbar("Added to favorite").show()
@@ -150,8 +150,8 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
         try {
             database.use {
                 delete(
-                    Favorite.TABLE_FAVORITE,
-                    "(${Favorite.MATCH_ID} = {id})",
+                    FavoriteMatch.TABLE_FAVORITE_MATCH,
+                    "(${FavoriteMatch.MATCH_ID} = {id})",
                     "id" to id
                 )
             }
@@ -171,12 +171,12 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
     private fun favoriteState() {
         database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
+            val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
                 .whereArgs(
-                    "(${Favorite.MATCH_ID} = {id})",
+                    "(${FavoriteMatch.MATCH_ID} = {id})",
                     "id" to id
                 )
-            val favorite = result.parseList(classParser<Favorite>())
+            val favorite = result.parseList(classParser<FavoriteMatch>())
             if (!favorite.isEmpty()) isFavorite = true
         }
     }

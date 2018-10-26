@@ -1,7 +1,7 @@
 package `in`.khofid.schedule.favorites
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.db.Favorite
+import `in`.khofid.schedule.db.FavoriteMatch
 import `in`.khofid.schedule.utils.toLocalDate
 import `in`.khofid.schedule.utils.toLocalTime
 import android.content.Context
@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.match_item.view.*
 
-class FavoritesAdapter(private val ctx: Context, private var favorites: List<Favorite>, private val listener: (Favorite) -> Unit): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
+class FavoritesAdapter(private val ctx: Context, private var favorites: List<FavoriteMatch>, private val listener: (FavoriteMatch) -> Unit): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         FavoritesAdapter.ViewHolder(LayoutInflater.from(ctx).inflate(R.layout.match_item, parent, false))
@@ -25,7 +25,7 @@ class FavoritesAdapter(private val ctx: Context, private var favorites: List<Fav
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        fun bindItem(fav: Favorite, listener: (Favorite) -> Unit) {
+        fun bindItem(fav: FavoriteMatch, listener: (FavoriteMatch) -> Unit) {
             itemView.match_date.text = fav.matchDate?.toLocalDate(fav.matchTime!!)
             itemView.match_time.text = fav.matchTime?.toLocalTime()
             itemView.home_team.text = fav.matchHomeTeam

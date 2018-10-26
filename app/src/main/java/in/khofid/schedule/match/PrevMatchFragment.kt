@@ -1,7 +1,7 @@
 package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.db.Favorite
+import `in`.khofid.schedule.db.FavoriteMatch
 import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.detail.MatchDetailActivity
 import `in`.khofid.schedule.model.Match
@@ -26,7 +26,7 @@ class PrevMatchFragment: Fragment(), MatchView {
     private lateinit var adapter: MatchAdapter
     private lateinit var presenter: MatchPresenter
     private lateinit var rootView: View
-    private lateinit var favorites: List<Favorite>
+    private lateinit var favorites: List<FavoriteMatch>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
@@ -75,9 +75,9 @@ class PrevMatchFragment: Fragment(), MatchView {
     }
 
     private fun getFavorites(){
-        var fav: List<Favorite> = listOf()
+        var fav: List<FavoriteMatch> = listOf()
         ctx.database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
+            val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
             fav = result.parseList(classParser())
         }
         favorites = fav
