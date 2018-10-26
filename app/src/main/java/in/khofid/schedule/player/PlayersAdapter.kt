@@ -28,7 +28,7 @@ class ViewHolder(view: View): RecyclerView.ViewHolder(view){
 
     fun bindItem(ctx: Context, player: Player, listener: (Player) -> Unit) {
 
-        Picasso.get().load(player.strCutout).into(itemView.player_cutout)
+        Picasso.get().load(player.strCutout).placeholder(R.drawable.ic_player).into(itemView.player_cutout)
         itemView.player_name.text = player.strPlayer
         itemView.player_position.text = player.strPosition
         itemView.player_height_weight.text = ctx.getString(R.string.player_height_weight, player.strHeight, player.strWeight)

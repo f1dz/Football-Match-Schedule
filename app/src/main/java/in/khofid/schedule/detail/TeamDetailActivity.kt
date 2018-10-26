@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_team_detail.*
+import org.jetbrains.anko.toast
 
 class TeamDetailActivity: AppCompatActivity() {
 
@@ -27,6 +28,8 @@ class TeamDetailActivity: AppCompatActivity() {
         tabAdapter = TabTeamDetailAdapter(this, supportFragmentManager, team)
         viewpager.adapter = tabAdapter
         team_tabs.setupWithViewPager(viewpager)
+
+        fab.setOnClickListener { toast("Clicked").show() }
 
         showTeam()
     }
