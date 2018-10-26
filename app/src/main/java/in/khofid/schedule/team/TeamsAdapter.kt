@@ -22,11 +22,6 @@ class TeamsAdapter(private val ctx: Context, private var teams: List<Team>, priv
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(teams[position], listener)
     }
-
-    fun updateList(data: List<Team>) {
-        teams = data
-        notifyDataSetChanged()
-    }
 }
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -25,6 +25,11 @@
     <string name="team_badge">Team Badge</string>
     <string name="search_title">Search</string>
     <string name="team_detail_title">Team Detail</string>
+    <string name="overview_title">Overview</string>
+    <string name="players_title">Players</string>
+    <string name="player_height_weight">%1$s m, %2$s kg</string>
+    <string name="weight_title">Weight (kg)</string>
+    <string name="height_title">Height (kg)</string>
 
     <array name="league">
         <item>English Premier League</item>

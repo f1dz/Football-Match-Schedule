@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.activity_team_detail.*
 
 class TeamDetailActivity: AppCompatActivity() {
 
-    private lateinit var team: Team
+    private var team: Team = Team()
+    private lateinit var tabAdapter: TabTeamDetailAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,10 @@ class TeamDetailActivity: AppCompatActivity() {
         setContentView(R.layout.activity_team_detail)
         setSupportActionBar(htab_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        tabAdapter = TabTeamDetailAdapter(this, supportFragmentManager, team)
+        viewpager.adapter = tabAdapter
+        team_tabs.setupWithViewPager(viewpager)
 
         showTeam()
     }
@@ -40,6 +45,8 @@ class TeamDetailActivity: AppCompatActivity() {
         Picasso.get().load(team.strStadiumThumb).into(htab_header)
         team_name.text = team.strTeam
         formed_year.text = team.intFormedYear.toString()
-        country.text = team.strCountry
+        stadium.text = team.strStadium
     }
+
+    fun getActivityTeam() = team
 }
