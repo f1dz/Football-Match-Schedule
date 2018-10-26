@@ -45,3 +45,7 @@ fun String.toLocalDate(time: String): String {
     format.timeZone = TimeZone.getDefault()
     return format.format(date)
 }
+
+fun String.encodeUrl(): String {
+    return this.replace(" ", "%20")
+}

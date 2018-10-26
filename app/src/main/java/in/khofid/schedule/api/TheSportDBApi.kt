@@ -1,6 +1,7 @@
 package `in`.khofid.schedule.api
 
 import `in`.khofid.schedule.BuildConfig
+import `in`.khofid.schedule.utils.encodeUrl
 
 object TheSportDBApi {
 
@@ -27,7 +28,7 @@ object TheSportDBApi {
     }
 
     fun getTeams(league: String?): String {
-        return uriCommon() + "/search_all_teams.php?l=" + league
+        return uriCommon() + "/search_all_teams.php?l=" + league?.encodeUrl()
     }
 
     fun getTeamDetail(teamId: String?) = uriCommon() + "/lookupteam.php?id=" + teamId
