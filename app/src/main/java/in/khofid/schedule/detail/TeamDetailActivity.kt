@@ -22,6 +22,7 @@ class TeamDetailActivity: AppCompatActivity() {
         setContentView(R.layout.activity_team_detail)
         setSupportActionBar(htab_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle(team.strTeam)
 
         tabAdapter = TabTeamDetailAdapter(this, supportFragmentManager, team)
         viewpager.adapter = tabAdapter

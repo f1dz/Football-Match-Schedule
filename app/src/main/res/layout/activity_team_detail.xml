@@ -127,4 +127,12 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_add_to_favorites"
+        app:layout_anchor="@id/htab_appbar"
+        app:layout_anchorGravity="bottom|end"/>
+
 </android.support.design.widget.CoordinatorLayout>
