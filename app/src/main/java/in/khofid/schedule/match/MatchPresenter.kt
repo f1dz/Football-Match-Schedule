@@ -27,14 +27,14 @@ class MatchPresenter(
     private val gson: Gson = Gson(),
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
-    fun getLastMatchList() {
+    fun getLastMatchList(leagueId: String) {
         view.showLoading()
-        async(TheSportDBApi.getLastMatch())
+        async(TheSportDBApi.getLastMatch(leagueId))
     }
 
-    fun getNextMatchList() {
+    fun getNextMatchList(leagueId: String) {
         view.showLoading()
-        async(TheSportDBApi.getNextMatch())
+        async(TheSportDBApi.getNextMatch(leagueId))
     }
 
     fun async(match: String) {

@@ -11,12 +11,12 @@ object TheSportDBApi {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}"
     }
 
-    fun getLastMatch(): String {
-        return uriCommon() + "/eventspastleague.php?id=" + ID_LEAGUE.toString()
+    fun getLastMatch(league: String = ID_LEAGUE.toString()): String {
+        return uriCommon() + "/eventspastleague.php?id=" + league
     }
 
-    fun getNextMatch(): String {
-        return uriCommon() + "/eventsnextleague.php?id=" + ID_LEAGUE.toString()
+    fun getNextMatch(league: String = ID_LEAGUE.toString()): String {
+        return uriCommon() + "/eventsnextleague.php?id=" + league
     }
 
     fun getMatchDetail(matchId: Int?): String {

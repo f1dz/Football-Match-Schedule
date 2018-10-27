@@ -5,6 +5,7 @@ import `in`.khofid.schedule.db.FavoriteMatch
 import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.detail.MatchDetailActivity
 import `in`.khofid.schedule.model.Match
+import `in`.khofid.schedule.utils.Common
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.visible
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -27,9 +29,13 @@ class NextMatchFragment: Fragment(), MatchView {
     private lateinit var presenter: MatchPresenter
     private lateinit var rootView: View
     private lateinit var favorites: List<FavoriteMatch>
+    private var leagueId: Int  = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
+
+        val spinnerLeagueId = ctx.resources.getIntArray(R.array.idLeague)
+        rootView.spinner.adapter = Common.spinnerAdapter(rootView.context)
 
         getFavorites()
 
@@ -38,12 +44,22 @@ class NextMatchFragment: Fragment(), MatchView {
         rootView.match_rv.adapter = adapter
 
         presenter = MatchPresenter(this)
-        presenter.getNextMatchList()
+        rootView.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                matches.clear()
+                leagueId = spinnerLeagueId.get(position)
+                presenter.getNextMatchList(leagueId.toString())
+            }
+
+        }
 
         rootView.swipe_refresh.onRefresh {
             getFavorites()
             rootView.match_rv.adapter = matchAdapter()
-            presenter.getNextMatchList()
+            presenter.getNextMatchList(leagueId.toString())
         }
 
         return rootView
