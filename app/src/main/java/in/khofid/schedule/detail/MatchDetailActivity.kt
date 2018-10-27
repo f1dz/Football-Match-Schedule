@@ -138,7 +138,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
                         FavoriteMatch.MATCH_AWAY_BADGE to awayBadge
                     )
                 }
-                scrollView.snackbar("Added to favorite").show()
+                scrollView.snackbar(R.string.favorite_added).show()
             } catch (e: SQLiteConstraintException) {
                 scrollView.snackbar(e.localizedMessage).show()
             }
@@ -155,7 +155,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
                     "id" to id
                 )
             }
-            scrollView.snackbar("Removed from favorite").show()
+            scrollView.snackbar(R.string.favorite_removed).show()
         } catch (e: SQLiteConstraintException) {
             scrollView.snackbar(e.localizedMessage).show()
         }

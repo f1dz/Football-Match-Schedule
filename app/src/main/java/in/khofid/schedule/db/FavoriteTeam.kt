@@ -1,7 +1,5 @@
 package `in`.khofid.schedule.db
 
-import android.os.Parcelable
-
 data class FavoriteTeam(
     var idTeam: Int? = null,
     var strTeam: String? = null,

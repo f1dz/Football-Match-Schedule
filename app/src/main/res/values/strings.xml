@@ -30,6 +30,8 @@
     <string name="player_height_weight">%1$s m, %2$s kg</string>
     <string name="weight_title">Weight (kg)</string>
     <string name="height_title">Height (kg)</string>
+    <string name="favorite_removed">Removed from favorite</string>
+    <string name="favorite_added">Added to favorite</string>
 
     <array name="league">
         <item>English Premier League</item>
