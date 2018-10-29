@@ -1,6 +1,7 @@
 package `in`.khofid.schedule.api
 
 import `in`.khofid.schedule.BuildConfig
+import `in`.khofid.schedule.utils.encodeUrl
 
 object TheSportDBApi {
 
@@ -10,12 +11,12 @@ object TheSportDBApi {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}"
     }
 
-    fun getLastMatch(): String {
-        return uriCommon() + "/eventspastleague.php?id=" + ID_LEAGUE.toString()
+    fun getLastMatch(league: String = ID_LEAGUE.toString()): String {
+        return uriCommon() + "/eventspastleague.php?id=" + league
     }
 
-    fun getNextMatch(): String {
-        return uriCommon() + "/eventsnextleague.php?id=" + ID_LEAGUE.toString()
+    fun getNextMatch(league: String = ID_LEAGUE.toString()): String {
+        return uriCommon() + "/eventsnextleague.php?id=" + league
     }
 
     fun getMatchDetail(matchId: Int?): String {
@@ -25,4 +26,13 @@ object TheSportDBApi {
     fun getTeamDetail(teamId: Int): String {
         return uriCommon() + "/lookupteam.php?id=" + teamId.toString()
     }
+
+    fun getTeams(league: String?): String {
+        return uriCommon() + "/search_all_teams.php?l=" + league?.encodeUrl()
+    }
+
+    fun searchEvents(query: String) = uriCommon() + "/searchevents.php?e=" + query
+
+    fun getPlayers(teamId: String) = uriCommon() + "/lookup_all_players.php?id=" + teamId
+
 }

@@ -146,7 +146,7 @@
 
         <TextView
             android:id="@+id/home_goal_details"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:singleLine="false"
             app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +154,7 @@
 
         <TextView
             android:id="@+id/away_goal_details"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
@@ -222,7 +222,7 @@
 
     <TextView
         android:id="@+id/home_gk"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -230,9 +230,10 @@
 
     <TextView
         android:id="@+id/away_gk"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/goal_keeper_title" />
 
@@ -274,14 +275,14 @@
 
         <TextView
             android:id="@+id/home_defense"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/defense_title" />
 
         <TextView
             android:id="@+id/away_defense"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
@@ -315,14 +316,14 @@
 
         <TextView
             android:id="@+id/home_midfield"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/midfield_title" />
 
         <TextView
             android:id="@+id/away_midfield"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
@@ -355,14 +356,14 @@
 
         <TextView
             android:id="@+id/home_forward"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/forward_title" />
 
         <TextView
             android:id="@+id/away_forward"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
@@ -384,7 +385,7 @@
 
     <TextView
         android:id="@+id/home_substitutes"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -392,7 +393,7 @@
 
     <TextView
         android:id="@+id/away_substitutes"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:textAlignment="textEnd"

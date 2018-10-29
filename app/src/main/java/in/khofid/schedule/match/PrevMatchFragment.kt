@@ -1,18 +1,19 @@
 package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.R
-import `in`.khofid.schedule.db.Favorite
+import `in`.khofid.schedule.db.FavoriteMatch
 import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.detail.MatchDetailActivity
 import `in`.khofid.schedule.model.Match
+import `in`.khofid.schedule.utils.Common
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.visible
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.AdapterView
+import android.widget.SearchView
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -23,13 +24,18 @@ import org.jetbrains.anko.support.v4.startActivity
 class PrevMatchFragment: Fragment(), MatchView {
 
     private var matches: MutableList<Match> = mutableListOf()
+    private var originMatches: MutableList<Match> = mutableListOf()
     private lateinit var adapter: MatchAdapter
     private lateinit var presenter: MatchPresenter
     private lateinit var rootView: View
-    private lateinit var favorites: List<Favorite>
+    private lateinit var favorites: List<FavoriteMatch>
+    private var leagueId: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
+
+        val spinnerLeagueId = ctx.resources.getIntArray(R.array.idLeague)
+        rootView.spinner.adapter = Common.spinnerAdapter(rootView.context)
 
         getFavorites()
 
@@ -38,12 +44,22 @@ class PrevMatchFragment: Fragment(), MatchView {
         rootView.match_rv.adapter = adapter
 
         presenter = MatchPresenter(this)
-        presenter.getLastMatchList()
+        rootView.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                matches.clear()
+                leagueId = spinnerLeagueId.get(position)
+                presenter.getLastMatchList(leagueId.toString())
+            }
+
+        }
 
         rootView.swipe_refresh.onRefresh {
             getFavorites()
             rootView.match_rv.adapter = matchAdapter()
-            presenter.getLastMatchList()
+            presenter.getLastMatchList(leagueId.toString())
         }
 
         return rootView
@@ -61,6 +77,8 @@ class PrevMatchFragment: Fragment(), MatchView {
         rootView.swipe_refresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
+        originMatches.clear()
+        originMatches.addAll(data)
         presenter.processBadge(ctx, data)
         adapter.notifyDataSetChanged()
     }
@@ -75,11 +93,12 @@ class PrevMatchFragment: Fragment(), MatchView {
     }
 
     private fun getFavorites(){
-        var fav: List<Favorite> = listOf()
+        var fav: List<FavoriteMatch> = listOf()
         ctx.database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
+            val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
             fav = result.parseList(classParser())
         }
         favorites = fav
     }
+
 }
