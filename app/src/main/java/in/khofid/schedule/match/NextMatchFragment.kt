@@ -8,13 +8,13 @@ import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.utils.Common
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.visible
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
+import android.widget.SearchView
 import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -22,14 +22,16 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
-class NextMatchFragment: Fragment(), MatchView {
+class NextMatchFragment: Fragment(), MatchView{
 
     private var matches: MutableList<Match> = mutableListOf()
+    private var originMatches: MutableList<Match> = mutableListOf()
     private lateinit var adapter: MatchAdapter
     private lateinit var presenter: MatchPresenter
     private lateinit var rootView: View
     private lateinit var favorites: List<FavoriteMatch>
     private var leagueId: Int  = 0
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
@@ -52,6 +54,7 @@ class NextMatchFragment: Fragment(), MatchView {
                 matches.clear()
                 leagueId = spinnerLeagueId.get(position)
                 presenter.getNextMatchList(leagueId.toString())
+//                searchView.setQuery("", false)
             }
 
         }
@@ -77,6 +80,8 @@ class NextMatchFragment: Fragment(), MatchView {
         rootView.swipe_refresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
+        originMatches.clear()
+        originMatches.addAll(data)
         presenter.processBadge(ctx, data)
         adapter.notifyDataSetChanged()
     }
@@ -98,4 +103,37 @@ class NextMatchFragment: Fragment(), MatchView {
         }
         favorites = fav
     }
+
+    /*override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+//        inflater.inflate(R.menu.search_menu, menu)
+
+        val searchItem = menu.findItem(R.id.search)
+        searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(this)
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onQueryTextSubmit(p0: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(query: String): Boolean {
+        var input = query.toLowerCase()
+        var data = originMatches.filter {
+            it.homeTeam!!.toLowerCase().contains(input) || it.awayTeam!!.toLowerCase().contains(input)
+        }
+        matches.clear()
+        matches.addAll(data)
+        presenter.processBadge(ctx, data)
+        adapter.notifyDataSetChanged()
+
+        return true
+    }
+    */
 }

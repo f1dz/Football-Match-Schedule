@@ -30,7 +30,7 @@ class MatchAdapter(private val ctx: Context, private var matches: List<Match>, p
 class MatchViewHolder(view: View): RecyclerView.ViewHolder(view){
 
     fun bindItem(match: Match, check: List<FavoriteMatch>, listener: (Match) -> Unit) {
-        itemView.match_date.text = match.matchDate?.toLocalDate(match.matchTime!!)
+        itemView.match_date.text = match.matchDate?.toLocalDate(match.matchTime)
         itemView.match_time.text = match.matchTime?.toLocalTime()
         itemView.home_team.text = match.homeTeam
         itemView.home_score.text = match.homeScore?.toString()

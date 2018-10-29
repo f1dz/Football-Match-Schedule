@@ -31,7 +31,7 @@ object TheSportDBApi {
         return uriCommon() + "/search_all_teams.php?l=" + league?.encodeUrl()
     }
 
-    fun getTeamDetail(teamId: String?) = uriCommon() + "/lookupteam.php?id=" + teamId
+    fun searchEvents(query: String) = uriCommon() + "/searchevents.php?e=" + query
 
     fun getPlayers(teamId: String) = uriCommon() + "/lookup_all_players.php?id=" + teamId
 

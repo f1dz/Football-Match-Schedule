@@ -26,7 +26,7 @@ class FavoritesAdapter(private val ctx: Context, private var favorites: List<Fav
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         fun bindItem(fav: FavoriteMatch, listener: (FavoriteMatch) -> Unit) {
-            itemView.match_date.text = fav.matchDate?.toLocalDate(fav.matchTime!!)
+            itemView.match_date.text = fav.matchDate?.toLocalDate(fav.matchTime)
             itemView.match_time.text = fav.matchTime?.toLocalTime()
             itemView.home_team.text = fav.matchHomeTeam
             itemView.home_score.text = fav.matchHomeScore?.toString()

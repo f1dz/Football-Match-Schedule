@@ -28,6 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".player.PlayerDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".search.SearchMatchActivity"/>
     </application>
 
 </manifest>
