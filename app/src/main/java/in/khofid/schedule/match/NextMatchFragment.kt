@@ -31,7 +31,6 @@ class NextMatchFragment: Fragment(), MatchView{
     private lateinit var rootView: View
     private lateinit var favorites: List<FavoriteMatch>
     private var leagueId: Int  = 0
-    private lateinit var searchView: SearchView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.match_layout, container, false)
@@ -54,7 +53,6 @@ class NextMatchFragment: Fragment(), MatchView{
                 matches.clear()
                 leagueId = spinnerLeagueId.get(position)
                 presenter.getNextMatchList(leagueId.toString())
-//                searchView.setQuery("", false)
             }
 
         }
@@ -103,37 +101,4 @@ class NextMatchFragment: Fragment(), MatchView{
         }
         favorites = fav
     }
-
-    /*override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-//        inflater.inflate(R.menu.search_menu, menu)
-
-        val searchItem = menu.findItem(R.id.search)
-        searchView = searchItem.actionView as SearchView
-        searchView.setOnQueryTextListener(this)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onQueryTextSubmit(p0: String?): Boolean {
-        return false
-    }
-
-    override fun onQueryTextChange(query: String): Boolean {
-        var input = query.toLowerCase()
-        var data = originMatches.filter {
-            it.homeTeam!!.toLowerCase().contains(input) || it.awayTeam!!.toLowerCase().contains(input)
-        }
-        matches.clear()
-        matches.addAll(data)
-        presenter.processBadge(ctx, data)
-        adapter.notifyDataSetChanged()
-
-        return true
-    }
-    */
 }

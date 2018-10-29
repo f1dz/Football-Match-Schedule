@@ -101,36 +101,4 @@ class PrevMatchFragment: Fragment(), MatchView {
         favorites = fav
     }
 
-    /*override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-//        inflater.inflate(R.menu.search_menu, menu)
-
-        val searchItem = menu.findItem(R.id.search)
-        searchView = searchItem.actionView as SearchView
-        searchView.setOnQueryTextListener(this)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onQueryTextSubmit(p0: String?): Boolean {
-        return false
-    }
-
-    override fun onQueryTextChange(query: String): Boolean {
-        var input = query.toLowerCase()
-        var data = originMatches.filter {
-            it.homeTeam!!.toLowerCase().contains(input) || it.awayTeam!!.toLowerCase().contains(input)
-        }
-        matches.clear()
-        matches.addAll(data)
-        presenter.processBadge(ctx, data)
-        adapter.notifyDataSetChanged()
-
-        return true
-    }
-    */
 }
