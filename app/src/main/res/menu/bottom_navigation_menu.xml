@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/prev_match"
+        android:id="@+id/matches"
         android:enabled="true"
         android:icon="@drawable/ic_trophy"
-        android:title="@string/prev_match_title"
-        app:showAsAction="ifRoom" />
+        android:title="@string/matches"
+        app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/next_match"
-        android:icon="@drawable/ic_schedule"
-        android:title="@string/next_match_title"
+        android:id="@+id/teams"
+        android:icon="@drawable/ic_soccer_ball"
+        android:title="@string/teams"
         app:showAsAction="ifRoom"/>
 
     <item

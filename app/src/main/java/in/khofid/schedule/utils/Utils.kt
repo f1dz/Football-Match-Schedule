@@ -35,8 +35,9 @@ fun String.toLocalTime(): String {
     return df.format(date)
 }
 
-fun String.toLocalDate(time: String): String {
-    val dt = this + " " + time
+fun String.toLocalDate(time: String?): String {
+    val mTime = time ?: "00:00:00+00:00:00"
+    val dt = this + " " + mTime
     val localeId = Locale("id", "ID")
     val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", localeId)
     val format = SimpleDateFormat("EEE, d MMM yyyy", localeId)
@@ -44,4 +45,8 @@ fun String.toLocalDate(time: String): String {
     val date = df.parse(dt)
     format.timeZone = TimeZone.getDefault()
     return format.format(date)
+}
+
+fun String.encodeUrl(): String {
+    return this.replace(" ", "%20")
 }

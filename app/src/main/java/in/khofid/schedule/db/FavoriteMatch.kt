@@ -1,6 +1,6 @@
 package `in`.khofid.schedule.db
 
-data class Favorite(
+data class FavoriteMatch(
     val id: Long?,
     val matchId: String?,
     val matchDate: String?,
@@ -15,7 +15,7 @@ data class Favorite(
     val matchAwayBadge: String?){
 
     companion object {
-        const val TABLE_FAVORITE: String = "TABLE_FAVORITE"
+        const val TABLE_FAVORITE_MATCH: String = "TABLE_FAVORITE_MATCH"
         const val ID: String = "ID_"
         const val MATCH_ID: String = "MATCH_ID"
         const val MATCH_DATE: String = "MATCH_DATE"

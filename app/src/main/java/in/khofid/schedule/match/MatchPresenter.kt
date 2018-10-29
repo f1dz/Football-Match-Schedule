@@ -16,9 +16,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.selects.select
 import org.jetbrains.anko.coroutines.experimental.bg
-import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.insert
-import org.jetbrains.anko.db.select
+import org.jetbrains.anko.db.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.uiThread
@@ -29,14 +27,14 @@ class MatchPresenter(
     private val gson: Gson = Gson(),
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
-    fun getLastMatchList() {
+    fun getLastMatchList(leagueId: String) {
         view.showLoading()
-        async(TheSportDBApi.getLastMatch())
+        async(TheSportDBApi.getLastMatch(leagueId))
     }
 
-    fun getNextMatchList() {
+    fun getNextMatchList(leagueId: String) {
         view.showLoading()
-        async(TheSportDBApi.getNextMatch())
+        async(TheSportDBApi.getNextMatch(leagueId))
     }
 
     fun async(match: String) {
@@ -85,13 +83,30 @@ class MatchPresenter(
 
                         try {
                             ctx.database.use {
-                                insert(
-                                    Team.TABLE_TEAM,
-                                    Team.TEAM_ID to response.teams.first().idTeam,
-                                    Team.TEAM_NAME to response.teams.first().strTeam,
-                                    Team.TEAM_ALTERNATE to response.teams.first().strAlternate,
-                                    Team.TEAM_BADGE to response.teams.first().strTeamBadge
-                                )
+                                with(response.teams.first()){
+                                    insert(
+                                        Team.TABLE_TEAM,
+                                        Team.TEAM_ID to idTeam,
+                                        Team.TEAM_NAME to strTeam,
+                                        Team.TEAM_ALTERNATE to strAlternate,
+                                        Team.TEAM_BADGE to strTeamBadge,
+                                        Team.TEAM_FORMED_YEAR to intFormedYear,
+                                        Team.TEAM_STADIUM to strStadium,
+                                        Team.TEAM_STADIUM_THUMB to strStadiumThumb,
+                                        Team.TEAM_STADIUM_LOCATION to strStadiumLocation,
+                                        Team.TEAM_STADIUM_CAPACITY to intStadiumCapacity,
+                                        Team.TEAM_DESCRIPTION to strDescriptionEN,
+                                        Team.TEAM_MANAGER to strManager,
+                                        Team.TEAM_WEBSITE to strWebsite,
+                                        Team.TEAM_FACEBOOK to strFacebook,
+                                        Team.TEAM_TWITTER to strTwitter,
+                                        Team.TEAM_INSTAGRAM to strInstagram,
+                                        Team.TEAM_COUNTRY to strCountry,
+                                        Team.TEAM_BANNER to strTeamBanner,
+                                        Team.TEAM_YOUTUBE to strYoutube
+                                    )
+                                }
+
                             }
                         } catch (e: SQLiteConstraintException) {
                             Log.e("ERROR", e.localizedMessage)
@@ -109,13 +124,29 @@ class MatchPresenter(
 
                         try {
                             ctx.database.use {
-                                insert(
-                                    Team.TABLE_TEAM,
-                                    Team.TEAM_ID to response.teams.first().idTeam,
-                                    Team.TEAM_NAME to response.teams.first().strTeam,
-                                    Team.TEAM_ALTERNATE to response.teams.first().strAlternate,
-                                    Team.TEAM_BADGE to response.teams.first().strTeamBadge
-                                )
+                                with(response.teams.first()){
+                                    insert(
+                                        Team.TABLE_TEAM,
+                                        Team.TEAM_ID to idTeam,
+                                        Team.TEAM_NAME to strTeam,
+                                        Team.TEAM_ALTERNATE to strAlternate,
+                                        Team.TEAM_BADGE to strTeamBadge,
+                                        Team.TEAM_FORMED_YEAR to intFormedYear,
+                                        Team.TEAM_STADIUM to strStadium,
+                                        Team.TEAM_STADIUM_THUMB to strStadiumThumb,
+                                        Team.TEAM_STADIUM_LOCATION to strStadiumLocation,
+                                        Team.TEAM_STADIUM_CAPACITY to intStadiumCapacity,
+                                        Team.TEAM_DESCRIPTION to strDescriptionEN,
+                                        Team.TEAM_MANAGER to strManager,
+                                        Team.TEAM_WEBSITE to strWebsite,
+                                        Team.TEAM_FACEBOOK to strFacebook,
+                                        Team.TEAM_TWITTER to strTwitter,
+                                        Team.TEAM_INSTAGRAM to strInstagram,
+                                        Team.TEAM_COUNTRY to strCountry,
+                                        Team.TEAM_BANNER to strTeamBanner,
+                                        Team.TEAM_YOUTUBE to strYoutube
+                                    )
+                                }
                             }
                         } catch (e: SQLiteConstraintException) {
                             Log.d("LOG", e.localizedMessage)
