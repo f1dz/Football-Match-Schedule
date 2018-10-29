@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Football Match</string>
 
-    <string name="prev_match_title">Prev. Match</string>
+    <string name="prev_match_title">Last Match</string>
     <string name="next_match_title">Next Match</string>
     <string name="home_badge_title">Home Badge</string>
     <string name="away_badge_title">Away Badge</string>
