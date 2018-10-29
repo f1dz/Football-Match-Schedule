@@ -5,6 +5,8 @@ import `in`.khofid.schedule.db.FavoriteMatch
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.utils.*
 import android.content.Context
+import android.content.Intent
+import android.provider.CalendarContract
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -49,12 +51,23 @@ class MatchViewHolder(view: View): RecyclerView.ViewHolder(view){
                 .into(itemView.away_team_badge)
         }
 
+        if(match.matchDate?.toLocalDateTime(match.matchTime)!!.isPast())
+            itemView.reminder.invisible()
 
         if(check.size > 0)
             itemView.favorite.visible()
         else itemView.favorite.invisible()
 
         itemView.setOnClickListener { listener(match) }
+        itemView.reminder.setOnClickListener {
+            val intent = Intent(Intent.ACTION_EDIT)
+            intent.type = "vnd.android.cursor.item/event"
+            intent.putExtra(CalendarContract.Events.TITLE, match.event)
+            intent.putExtra(CalendarContract.Events.DESCRIPTION, match.fileName)
+            intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, match.matchDate?.toLocalDateTime(match.matchTime)?.toMillis())
+            intent.putExtra(CalendarContract.Events.ALL_DAY, false)
+            itemView.context.startActivity(intent)
+        }
     }
 
 }

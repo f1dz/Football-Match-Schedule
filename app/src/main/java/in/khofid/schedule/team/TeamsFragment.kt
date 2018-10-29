@@ -1,6 +1,8 @@
 package `in`.khofid.schedule.team
 
 import `in`.khofid.schedule.R
+import `in`.khofid.schedule.db.FavoriteTeam
+import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.detail.TeamDetailActivity
 import `in`.khofid.schedule.model.Team
 import `in`.khofid.schedule.utils.invisible
@@ -13,6 +15,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
 import kotlinx.android.synthetic.main.teams_container.view.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -24,6 +28,7 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
     private lateinit var presenter: TeamsPresenter
     private lateinit var adapter: TeamsAdapter
     private lateinit var searchView: SearchView
+    private lateinit var favorites: List<FavoriteTeam>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.teams_container, container, false)
@@ -32,7 +37,9 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
         val spinnerAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         rootView.league_spinner.adapter = spinnerAdapter
 
-        adapter = TeamsAdapter(ctx, teams) {
+        getFavorites()
+
+        adapter = TeamsAdapter(ctx, teams, favorites) {
             startActivity<TeamDetailActivity>("team" to it)
         }
 
@@ -51,6 +58,13 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
         }
 
         return rootView
+    }
+
+    private fun getFavorites() {
+        rootView.context.database.use {
+            val result = select(FavoriteTeam.TABLE_FAVORITE_TEAM)
+            favorites = result.parseList(classParser())
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

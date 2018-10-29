@@ -17,7 +17,6 @@ import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.image
-import org.jetbrains.anko.toast
 
 class TeamDetailActivity: AppCompatActivity() {
 
@@ -62,7 +61,7 @@ class TeamDetailActivity: AppCompatActivity() {
 
     private fun showTeam(){
         Picasso.get().load(team.strTeamBadge).into(team_badge)
-        Picasso.get().load(team.strStadiumThumb).into(htab_header)
+        Picasso.get().load(team.strStadiumThumb).into(header)
         team_name.text = team.strTeam
         formed_year.text = team.intFormedYear.toString()
         stadium.text = team.strStadium
