@@ -22,13 +22,15 @@ import org.jetbrains.anko.support.v4.startActivity
 class FavoritesTeamFragment: Fragment() {
 
     private var favoriteTeam: MutableList<Team> = mutableListOf()
+    private var favorites: MutableList<FavoriteTeam> = mutableListOf()
     private lateinit var rootView: View
     private lateinit var adapter: TeamsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.favorites_team_layout, container, false)
 
-        adapter = TeamsAdapter(rootView.context, favoriteTeam) {
+
+        adapter = TeamsAdapter(rootView.context, favoriteTeam, favorites ) {
             startActivity<TeamDetailActivity>("team" to it)
         }
 
@@ -47,6 +49,9 @@ class FavoritesTeamFragment: Fragment() {
             rootView.swipe_refresh.isRefreshing = false
             val result = select(FavoriteTeam.TABLE_FAVORITE_TEAM)
             val favorite = result.parseList((classParser<Team>()))
+            val mFavorites = result.parseList(classParser<FavoriteTeam>())
+            favorites.clear()
+            favorites.addAll(mFavorites)
             favoriteTeam.clear()
             favoriteTeam.addAll(favorite)
             adapter.notifyDataSetChanged()
