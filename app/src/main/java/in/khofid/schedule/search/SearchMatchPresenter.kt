@@ -2,7 +2,12 @@ package `in`.khofid.schedule.search
 
 import `in`.khofid.schedule.api.ApiRepository
 import `in`.khofid.schedule.api.TheSportDBApi
+import `in`.khofid.schedule.model.Match
+import `in`.khofid.schedule.model.TeamResponse
 import `in`.khofid.schedule.utils.CoroutineContextProvider
+import `in`.khofid.schedule.utils.dbGetTeam
+import `in`.khofid.schedule.utils.insertToDb
+import android.content.Context
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
@@ -24,6 +29,39 @@ class SearchMatchPresenter(
             }
             view.showMatchesList(data.await().event)
             view.hideLoading()
+        }
+    }
+
+    fun processBadge(ctx: Context, matches: List<Match>) {
+        async (context.main) {
+            matches.forEach {
+                bg {
+                    if (it.dbGetTeam(ctx, it.homeTeamId!!) == null) {
+                        // Get data
+                        val response = Gson().fromJson(
+                            ApiRepository().doRequest(
+                                TheSportDBApi.getTeamDetail(it.homeTeamId!!)
+                            ),
+                            TeamResponse::class.java
+                        )
+
+                        response.teams.first().insertToDb(ctx)
+                    }
+
+                    if (it.dbGetTeam(ctx, it.awayTeamId!!) == null) {
+                        // Get data
+                        val response = Gson().fromJson(
+                            ApiRepository().doRequest(
+                                TheSportDBApi.getTeamDetail(it.homeTeamId!!)
+                            ),
+                            TeamResponse::class.java
+                        )
+
+                        response.teams.first().insertToDb(ctx)
+                    }
+                }
+            }
+            view.processBadge()
         }
     }
 }
