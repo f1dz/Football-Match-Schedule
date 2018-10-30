@@ -2,6 +2,7 @@ package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.api.ApiRepository
 import `in`.khofid.schedule.api.TheSportDBApi
+import `in`.khofid.schedule.model.LeaguesResponse
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.model.MatchResponse
 import `in`.khofid.schedule.model.TeamResponse
@@ -37,8 +38,13 @@ class MatchPresenter(
                     MatchResponse::class.java
                 )
             }
-            view.showMatchList(data.await().events)
-            view.hideLoading()
+            val matches = data.await().events
+            if(matches == null)
+                view.matchesNotFound()
+            else {
+                view.showMatchList(matches)
+                view.hideLoading()
+            }
         }
     }
 
@@ -70,6 +76,22 @@ class MatchPresenter(
                 }
             }
                 view.processBadge()
+        }
+    }
+
+    fun fillLeagueSpinner() {
+        async(context.main) {
+            val data = bg {
+                gson.fromJson(
+                    apiRepository.doRequest(
+                        TheSportDBApi.getLeagues()),
+                    LeaguesResponse::class.java
+                )
+            }
+            val leagues = data.await().leagues.filter {
+                it.strSport == "Soccer" && it.idLeague != 4367
+            }
+            view.fillSpinner(leagues)
         }
     }
 }

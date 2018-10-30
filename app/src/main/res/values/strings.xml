@@ -34,6 +34,7 @@
     <string name="favorite_added">Added to favorite</string>
     <string name="search_match">Search Match</string>
     <string name="player_photo">Player Photo</string>
+    <string name="matches_not_found">Matches not found!</string>
 
     <array name="league">
         <item>English Premier League</item>
