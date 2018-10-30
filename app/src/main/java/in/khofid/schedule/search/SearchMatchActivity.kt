@@ -96,8 +96,13 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView, SearchView.OnQ
         matches.addAll(mData)
         originMatches.clear()
         originMatches.addAll(mData)
+        presenter.processBadge(this, data)
         adapter.notifyDataSetChanged()
         progressbar.invisible()
+    }
+
+    override fun processBadge() {
+        adapter.notifyDataSetChanged()
     }
 
     override fun onQueryTextSubmit(p0: String?): Boolean {
