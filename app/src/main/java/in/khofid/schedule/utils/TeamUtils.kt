@@ -26,8 +26,8 @@ fun Match.dbGetTeam(ctx: Context, teamId: Int) : Team? {
     return teams.first()
 }
 
-fun Team.getBadge(): String {
-    return this.strTeamBadge!!
+fun Team.getBadge(): String? {
+    return this.strTeamBadge
 }
 
 fun Team.insertToDb(ctx: Context) {

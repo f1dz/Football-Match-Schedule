@@ -36,6 +36,8 @@ class FavoritesMatchFragment: Fragment() {
             startActivity<MatchDetailActivity>("match" to match)
         }
 
+        // TODO Tambah keterangan jika favorite masih kosong
+
         progressBar = rootView.progressbar
         swipeRefresh = rootView.swipe_refresh
         showFavorite()
@@ -73,5 +75,10 @@ class FavoritesMatchFragment: Fragment() {
             fav.matchAwayTeam,
             fav.matchHomeScore,
             fav.matchAwayScore)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showFavorite()
     }
 }

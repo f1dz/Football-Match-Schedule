@@ -39,6 +39,9 @@ class MatchesFragment: Fragment(), MatchView {
 
         getFavorites()
 
+        // TODO polish spinner
+        // TODO refactor xml style
+
         adapter = matchAdapter()
         rootView.match_rv.layoutManager = LinearLayoutManager(activity)
         rootView.match_rv.adapter = adapter

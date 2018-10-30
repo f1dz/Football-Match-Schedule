@@ -29,6 +29,7 @@ class FavoritesTeamFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.favorites_team_layout, container, false)
 
+        // TODO Tambah keterangan jika favorite masih kosong
 
         adapter = TeamsAdapter(rootView.context, favoriteTeam, favorites ) {
             startActivity<TeamDetailActivity>("team" to it)
@@ -57,5 +58,10 @@ class FavoritesTeamFragment: Fragment() {
             adapter.notifyDataSetChanged()
             rootView.progressbar.invisible()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showFavorite()
     }
 }
