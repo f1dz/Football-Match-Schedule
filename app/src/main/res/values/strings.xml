@@ -33,6 +33,7 @@
     <string name="favorite_removed">Removed from favorite</string>
     <string name="favorite_added">Added to favorite</string>
     <string name="search_match">Search Match</string>
+    <string name="player_photo">Player Photo</string>
 
     <array name="league">
         <item>English Premier League</item>
