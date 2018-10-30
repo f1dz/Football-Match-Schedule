@@ -2,24 +2,16 @@ package `in`.khofid.schedule.match
 
 import `in`.khofid.schedule.api.ApiRepository
 import `in`.khofid.schedule.api.TheSportDBApi
-import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.model.MatchResponse
-import `in`.khofid.schedule.model.Team
 import `in`.khofid.schedule.model.TeamResponse
 import `in`.khofid.schedule.utils.CoroutineContextProvider
+import `in`.khofid.schedule.utils.dbGetTeam
+import `in`.khofid.schedule.utils.insertToDb
 import android.content.Context
-import android.database.sqlite.SQLiteConstraintException
-import android.provider.SyncStateContract.Helpers.insert
-import android.util.Log
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.selects.select
 import org.jetbrains.anko.coroutines.experimental.bg
-import org.jetbrains.anko.db.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.uiThread
 
 class MatchPresenter(
     private val view: MatchView,
@@ -54,26 +46,7 @@ class MatchPresenter(
         async(context.main) {
             match.forEach {
                 bg {
-                    var homeTeams: List<Team> = listOf()
-                    var awayTeams: List<Team> = listOf()
-                    try {
-                        ctx.database.use {
-                            val result = select(Team.TABLE_TEAM)
-                                .whereArgs("(${Team.TEAM_ID} = {id})", "id" to it.homeTeamId!!)
-                            homeTeams = result.parseList(classParser())
-                        }
-
-                        ctx.database.use {
-                            val result = select(Team.TABLE_TEAM)
-                                .whereArgs("(${Team.TEAM_ID} = {id})", "id" to it.awayTeamId!!)
-                            awayTeams = result.parseList(classParser())
-                        }
-
-                    } catch (e: SQLiteConstraintException) {
-                    }
-
-                    if (homeTeams.isEmpty()) {
-                        // Get data
+                    if (it.dbGetTeam(ctx, it.homeTeamId!!) == null) {
                         val response = Gson().fromJson(
                             ApiRepository().doRequest(
                                 TheSportDBApi.getTeamDetail(it.homeTeamId!!)
@@ -81,40 +54,10 @@ class MatchPresenter(
                             TeamResponse::class.java
                         )
 
-                        try {
-                            ctx.database.use {
-                                with(response.teams.first()){
-                                    insert(
-                                        Team.TABLE_TEAM,
-                                        Team.TEAM_ID to idTeam,
-                                        Team.TEAM_NAME to strTeam,
-                                        Team.TEAM_ALTERNATE to strAlternate,
-                                        Team.TEAM_BADGE to strTeamBadge,
-                                        Team.TEAM_FORMED_YEAR to intFormedYear,
-                                        Team.TEAM_STADIUM to strStadium,
-                                        Team.TEAM_STADIUM_THUMB to strStadiumThumb,
-                                        Team.TEAM_STADIUM_LOCATION to strStadiumLocation,
-                                        Team.TEAM_STADIUM_CAPACITY to intStadiumCapacity,
-                                        Team.TEAM_DESCRIPTION to strDescriptionEN,
-                                        Team.TEAM_MANAGER to strManager,
-                                        Team.TEAM_WEBSITE to strWebsite,
-                                        Team.TEAM_FACEBOOK to strFacebook,
-                                        Team.TEAM_TWITTER to strTwitter,
-                                        Team.TEAM_INSTAGRAM to strInstagram,
-                                        Team.TEAM_COUNTRY to strCountry,
-                                        Team.TEAM_BANNER to strTeamBanner,
-                                        Team.TEAM_YOUTUBE to strYoutube
-                                    )
-                                }
-
-                            }
-                        } catch (e: SQLiteConstraintException) {
-                            Log.e("ERROR", e.localizedMessage)
-                        }
+                        response.teams.first().insertToDb(ctx)
                     }
 
-                    if (awayTeams.isEmpty()) {
-                        // Get data
+                    if (it.dbGetTeam(ctx, it.awayTeamId!!) == null) {
                         val response = Gson().fromJson(
                             ApiRepository().doRequest(
                                 TheSportDBApi.getTeamDetail(it.homeTeamId!!)
@@ -122,35 +65,7 @@ class MatchPresenter(
                             TeamResponse::class.java
                         )
 
-                        try {
-                            ctx.database.use {
-                                with(response.teams.first()){
-                                    insert(
-                                        Team.TABLE_TEAM,
-                                        Team.TEAM_ID to idTeam,
-                                        Team.TEAM_NAME to strTeam,
-                                        Team.TEAM_ALTERNATE to strAlternate,
-                                        Team.TEAM_BADGE to strTeamBadge,
-                                        Team.TEAM_FORMED_YEAR to intFormedYear,
-                                        Team.TEAM_STADIUM to strStadium,
-                                        Team.TEAM_STADIUM_THUMB to strStadiumThumb,
-                                        Team.TEAM_STADIUM_LOCATION to strStadiumLocation,
-                                        Team.TEAM_STADIUM_CAPACITY to intStadiumCapacity,
-                                        Team.TEAM_DESCRIPTION to strDescriptionEN,
-                                        Team.TEAM_MANAGER to strManager,
-                                        Team.TEAM_WEBSITE to strWebsite,
-                                        Team.TEAM_FACEBOOK to strFacebook,
-                                        Team.TEAM_TWITTER to strTwitter,
-                                        Team.TEAM_INSTAGRAM to strInstagram,
-                                        Team.TEAM_COUNTRY to strCountry,
-                                        Team.TEAM_BANNER to strTeamBanner,
-                                        Team.TEAM_YOUTUBE to strYoutube
-                                    )
-                                }
-                            }
-                        } catch (e: SQLiteConstraintException) {
-                            Log.d("LOG", e.localizedMessage)
-                        }
+                        response.teams.first().insertToDb(ctx)
                     }
                 }
             }

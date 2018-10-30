@@ -37,7 +37,6 @@ class SearchMatchPresenter(
             matches.forEach {
                 bg {
                     if (it.dbGetTeam(ctx, it.homeTeamId!!) == null) {
-                        // Get data
                         val response = Gson().fromJson(
                             ApiRepository().doRequest(
                                 TheSportDBApi.getTeamDetail(it.homeTeamId!!)
@@ -49,7 +48,6 @@ class SearchMatchPresenter(
                     }
 
                     if (it.dbGetTeam(ctx, it.awayTeamId!!) == null) {
-                        // Get data
                         val response = Gson().fromJson(
                             ApiRepository().doRequest(
                                 TheSportDBApi.getTeamDetail(it.homeTeamId!!)
