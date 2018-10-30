@@ -41,6 +41,9 @@
         <item>Italian Serie A</item>
         <item>French Ligue 1</item>
         <item>Spanish La Liga</item>
+        <item>UEFA Champions League</item>
+        <item>UEFA Europa League</item>
+        <item>Copa del Rey</item>
     </array>
 
     <integer-array name="idLeague">
@@ -50,5 +53,8 @@
         <item>4332</item>
         <item>4334</item>
         <item>4335</item>
+        <item>4480</item>
+        <item>4481</item>
+        <item>4483</item>
     </integer-array>
 </resources>
