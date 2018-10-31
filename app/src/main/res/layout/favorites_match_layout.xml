@@ -9,6 +9,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical" />
 
+    <TextView
+        android:id="@+id/no_favorites_matches"
+        style="@style/TextNotFoundInfo"
+        android:text="@string/no_favorites_matches"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
