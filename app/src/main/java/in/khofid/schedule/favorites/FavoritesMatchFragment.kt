@@ -6,6 +6,7 @@ import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.detail.MatchDetailActivity
 import `in`.khofid.schedule.model.Match
 import `in`.khofid.schedule.utils.invisible
+import `in`.khofid.schedule.utils.visible
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -36,8 +37,6 @@ class FavoritesMatchFragment: Fragment() {
             startActivity<MatchDetailActivity>("match" to match)
         }
 
-        // TODO Tambah keterangan jika favorite masih kosong
-
         progressBar = rootView.progressbar
         swipeRefresh = rootView.swipe_refresh
         showFavorite()
@@ -62,6 +61,9 @@ class FavoritesMatchFragment: Fragment() {
             adapter.notifyDataSetChanged()
             progressBar.invisible()
         }
+
+        if(favorites.isEmpty()) rootView.no_favorites_matches.visible()
+        else rootView.no_favorites_matches.invisible()
     }
 
     private fun castFavoriteToMatch(fav: FavoriteMatch): Match{

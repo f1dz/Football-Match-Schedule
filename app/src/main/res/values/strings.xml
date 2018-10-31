@@ -37,6 +37,7 @@
     <string name="matches_not_found">Matches not found!</string>
     <string name="teams_not_found">Teams not found!</string>
     <string name="players_not_found">Players not found!</string>
+    <string name="no_favorites_matches">You don\'t have favorite matches</string>
 
     <array name="league">
         <item>English Premier League</item>
