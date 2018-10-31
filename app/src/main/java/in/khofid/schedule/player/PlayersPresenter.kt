@@ -23,8 +23,14 @@ class PlayersPresenter(
                     PlayersResponse::class.java
                 )
             }
-            view.showPlayersList(data.await().player)
-            view.hideLoading()
+
+            val players = data.await().player
+
+            if(players == null) view.playersNotFound()
+            else {
+                view.showPlayersList(players)
+                view.hideLoading()
+            }
         }
     }
 }
