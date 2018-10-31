@@ -7,6 +7,7 @@ import `in`.khofid.schedule.detail.TeamDetailActivity
 import `in`.khofid.schedule.model.Team
 import `in`.khofid.schedule.team.TeamsAdapter
 import `in`.khofid.schedule.utils.invisible
+import `in`.khofid.schedule.utils.visible
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -28,7 +29,6 @@ class FavoritesTeamFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.favorites_team_layout, container, false)
-
 
         adapter = TeamsAdapter(rootView.context, favoriteTeam, favorites ) {
             startActivity<TeamDetailActivity>("team" to it)
@@ -57,5 +57,13 @@ class FavoritesTeamFragment: Fragment() {
             adapter.notifyDataSetChanged()
             rootView.progressbar.invisible()
         }
+
+        if(favorites.isEmpty()) rootView.no_favorites_team.visible()
+        else rootView.no_favorites_team.invisible()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showFavorite()
     }
 }

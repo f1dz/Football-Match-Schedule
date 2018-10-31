@@ -10,6 +10,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"/>
 
+    <TextView
+        android:id="@+id/players_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/players_not_found"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:textAlignment="center"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/players_rv"
         android:layout_width="match_parent"

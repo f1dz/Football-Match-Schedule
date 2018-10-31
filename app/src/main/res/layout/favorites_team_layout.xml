@@ -9,6 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/no_favorites_team"
+            style="@style/TextNotFoundInfo"
+            android:text="@string/no_favorites_teams"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"

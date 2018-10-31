@@ -53,9 +53,9 @@ class MatchViewHolder(view: View): RecyclerView.ViewHolder(view){
 
         if(match.matchDate?.toLocalDateTime(match.matchTime)!!.isPast())
             itemView.reminder.invisible()
+        else itemView.reminder.visible()
 
-        if(check.size > 0)
-            itemView.favorite.visible()
+        if(check.size > 0) itemView.favorite.visible()
         else itemView.favorite.invisible()
 
         itemView.setOnClickListener { listener(match) }

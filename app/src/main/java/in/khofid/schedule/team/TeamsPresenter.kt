@@ -2,6 +2,7 @@ package `in`.khofid.schedule.team
 
 import `in`.khofid.schedule.api.ApiRepository
 import `in`.khofid.schedule.api.TheSportDBApi
+import `in`.khofid.schedule.model.LeaguesResponse
 import `in`.khofid.schedule.model.TeamResponse
 import `in`.khofid.schedule.utils.CoroutineContextProvider
 import com.google.gson.Gson
@@ -23,8 +24,29 @@ class TeamsPresenter(private val view: TeamsView,
                     TeamResponse::class.java
                 )
             }
-            view.showTeamsList(data.await().teams)
-            view.hideLoading()
+            val teams = data.await().teams
+            if(teams == null)
+                view.teamsNotFound()
+            else {
+                view.showTeamsList(teams)
+                view.hideLoading()
+            }
+        }
+    }
+
+    fun fillLeagueSpinner() {
+        async(context.main) {
+            val data = bg {
+                gson.fromJson(
+                    apiRepository.doRequest(
+                        TheSportDBApi.getLeagues()),
+                    LeaguesResponse::class.java
+                )
+            }
+            val leagues = data.await().leagues.filter {
+                it.strSport == "Soccer" && it.idLeague != 4367
+            }
+            view.fillSpinner(leagues)
         }
     }
 }

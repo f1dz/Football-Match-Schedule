@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.team_players_layout.view.*
+import org.jetbrains.anko.design.longSnackbar
 import org.jetbrains.anko.support.v4.startActivity
 
 class PlayersFragment: Fragment(), PlayersView {
@@ -43,6 +44,7 @@ class PlayersFragment: Fragment(), PlayersView {
 
     override fun showLoading() {
         rootView.progressbar.visible()
+        rootView.players_not_found.invisible()
     }
 
     override fun hideLoading() {
@@ -53,5 +55,12 @@ class PlayersFragment: Fragment(), PlayersView {
         players.clear()
         players.addAll(data)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun playersNotFound() {
+        rootView.progressbar.invisible()
+        players.clear()
+        adapter.notifyDataSetChanged()
+        rootView.players_not_found.visible()
     }
 }

@@ -6,4 +6,5 @@ interface PlayersView {
     fun showLoading()
     fun hideLoading()
     fun showPlayersList(data: List<Player>)
+    fun playersNotFound()
 }
