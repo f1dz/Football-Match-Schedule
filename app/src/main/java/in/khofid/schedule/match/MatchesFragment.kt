@@ -39,7 +39,6 @@ class MatchesFragment: Fragment(), MatchView {
 
         getFavorites()
 
-        // TODO polish spinner
         // TODO refactor xml style
 
         adapter = matchAdapter()
