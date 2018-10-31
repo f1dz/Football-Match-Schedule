@@ -4,7 +4,9 @@ import `in`.khofid.schedule.R
 import `in`.khofid.schedule.db.FavoriteTeam
 import `in`.khofid.schedule.db.database
 import `in`.khofid.schedule.detail.TeamDetailActivity
+import `in`.khofid.schedule.model.League
 import `in`.khofid.schedule.model.Team
+import `in`.khofid.schedule.utils.Common
 import `in`.khofid.schedule.utils.invisible
 import `in`.khofid.schedule.utils.visible
 import android.os.Bundle
@@ -12,11 +14,11 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.SearchView
 import kotlinx.android.synthetic.main.teams_container.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.longSnackbar
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -24,6 +26,7 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
 
     private var teams: MutableList<Team> = mutableListOf()
     private var originTeams: MutableList<Team> = mutableListOf()
+    private var leagues: MutableList<League> = mutableListOf()
     private lateinit var rootView: View
     private lateinit var presenter: TeamsPresenter
     private lateinit var adapter: TeamsAdapter
@@ -32,10 +35,6 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.teams_container, container, false)
-
-        val spinnerItems = resources.getStringArray(R.array.league)
-        val spinnerAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
-        rootView.league_spinner.adapter = spinnerAdapter
 
         getFavorites()
 
@@ -49,10 +48,12 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
         rootView.teams_rv.adapter = adapter
 
         presenter = TeamsPresenter(this)
+        presenter.fillLeagueSpinner()
         rootView.league_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                presenter.getTeamsList(rootView.league_spinner.selectedItem.toString())
+                teams.clear()
+                presenter.getTeamsList(leagues.get(position).strLeague)
                 searchView.setQuery("", false)
             }
 
@@ -82,6 +83,12 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
         setHasOptionsMenu(true)
     }
 
+    override fun fillSpinner(data: List<League>) {
+        leagues.addAll(data)
+
+        rootView.league_spinner.adapter = Common.spinnerAdapter(rootView.context, data)
+    }
+
     override fun showLoading() {
         rootView.progressbar.visible()
     }
@@ -96,6 +103,13 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
         originTeams.clear()
         originTeams.addAll(data)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun teamsNotFound() {
+        teams.clear()
+        rootView.longSnackbar(R.string.teams_not_found)
+        adapter.notifyDataSetChanged()
+        rootView.progressbar.invisible()
     }
 
     override fun onQueryTextSubmit(p0: String?): Boolean {
