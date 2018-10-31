@@ -11,12 +11,8 @@
 
     <TextView
         android:id="@+id/no_favorites_matches"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:padding="8dp"
-        android:text="@string/no_favorites_matches"
-        android:visibility="invisible"/>
+        style="@style/TextNotFoundInfo"
+        android:text="@string/no_favorites_matches"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
