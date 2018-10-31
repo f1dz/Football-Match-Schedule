@@ -38,8 +38,6 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
 
         getFavorites()
 
-        // TODO change league data from API
-
         adapter = TeamsAdapter(ctx, teams, favorites) {
             startActivity<TeamDetailActivity>("team" to it)
         }
