@@ -50,7 +50,6 @@ class HomeActivityTest {
         Espresso.pressBack()
 
         onView(withId(R.id.bottom_navigation)).check(matches(isDisplayed()))
-        onView(withId(R.id.next_match)).perform(click())
         onView(withId(R.id.match_rv)).check(matches(isDisplayed()))
 
         SystemClock.sleep(1000)
