@@ -9,5 +9,5 @@ interface MatchView {
     fun matchesNotFound()
     fun showMatchList(data: List<Match>)
     fun processBadge()
-    fun fillSpinner(leagues: List<League>)
+    fun fillSpinner(data: List<League>)
 }

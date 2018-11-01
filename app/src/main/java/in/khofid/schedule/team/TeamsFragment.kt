@@ -38,7 +38,7 @@ class TeamsFragment: Fragment(), TeamsView, SearchView.OnQueryTextListener {
 
         getFavorites()
 
-        adapter = TeamsAdapter(ctx, teams, favorites) {
+        adapter = TeamsAdapter(rootView.context, teams, favorites) {
             startActivity<TeamDetailActivity>("team" to it)
         }
 

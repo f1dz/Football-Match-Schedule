@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.match_layout.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.longSnackbar
-import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -85,7 +84,7 @@ class MatchesFragment: Fragment(), MatchView {
         rootView.swipe_refresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
-        presenter.processBadge(ctx, data)
+        presenter.processBadge(rootView.context, data)
         adapter.notifyDataSetChanged()
     }
 
