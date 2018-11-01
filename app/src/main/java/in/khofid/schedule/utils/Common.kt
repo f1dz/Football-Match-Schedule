@@ -1,12 +1,11 @@
 package `in`.khofid.schedule.utils
 
-import `in`.khofid.schedule.R
 import `in`.khofid.schedule.model.League
 import `in`.khofid.schedule.model.LeagueSpinner
 import android.content.Context
 import android.widget.ArrayAdapter
 
-class Common() {
+class Common {
 
     companion object {
 
