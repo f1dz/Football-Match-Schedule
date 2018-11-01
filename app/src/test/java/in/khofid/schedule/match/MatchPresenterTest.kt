@@ -21,6 +21,7 @@ class MatchPresenterTest {
     @Mock private lateinit var matches: List<Match>
 
     private lateinit var presenter: MatchPresenter
+    private val leagueId = 4328
 
     @Before
     fun setUp() {
@@ -36,7 +37,7 @@ class MatchPresenterTest {
             gson.fromJson(apiRepository.doRequest(TheSportDBApi.getLastMatch()), MatchResponse::class.java)
         ).thenReturn(response)
 
-        presenter.getLastMatchList()
+        presenter.getLastMatchList(leagueId.toString())
 
         verify(view).showLoading()
         verify(view).showMatchList(matches)
@@ -51,7 +52,7 @@ class MatchPresenterTest {
             gson.fromJson(apiRepository.doRequest(TheSportDBApi.getNextMatch()), MatchResponse::class.java)
         ).thenReturn(response)
 
-        presenter.getNextMatchList()
+        presenter.getNextMatchList(leagueId.toString())
 
         verify(view).showLoading()
         verify(view).showMatchList(matches)
