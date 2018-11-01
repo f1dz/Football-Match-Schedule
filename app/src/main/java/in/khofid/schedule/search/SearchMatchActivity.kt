@@ -73,7 +73,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView, SearchView.OnQ
 
     private fun getFavorites() {
         var fav: List<FavoriteMatch> = listOf()
-        ctx.database.use {
+        database.use {
             val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
             fav = result.parseList(classParser())
         }
