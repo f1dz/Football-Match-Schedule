@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"/>
+
+    <TextView
+        android:id="@+id/players_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/players_not_found"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:textAlignment="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/players_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"/>
+
+</android.support.design.widget.CoordinatorLayout>

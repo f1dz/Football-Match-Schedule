@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        style="@style/MatchDetailTitle"
+        style="@style/TextMatchDetailTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,11 +30,7 @@
 
     <TextView
         android:id="@+id/static_vs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        style="@style/TextMatchDetailTitle"
         android:text="@string/static_vs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +60,7 @@
 
     <ImageView
         android:id="@+id/home_badge"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_empty_badge"
+        style="@style/ImageBadge"
         android:contentDescription="@string/home_badge_title"
         app:layout_constraintBottom_toBottomOf="@+id/home_score"
         app:layout_constraintEnd_toStartOf="@+id/home_score"
@@ -77,11 +69,7 @@
 
     <ImageView
         android:id="@+id/away_badge"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_empty_badge"
+        style="@style/ImageBadge"
         android:contentDescription="@string/away_badge_title"
         app:layout_constraintBottom_toBottomOf="@+id/away_score"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,45 +78,28 @@
 
     <TextView
         android:id="@+id/home_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
+        style="@style/TextTeamName"
         app:layout_constraintEnd_toEndOf="@+id/home_badge"
         app:layout_constraintStart_toStartOf="@+id/home_badge"
         app:layout_constraintTop_toBottomOf="@+id/home_badge" />
 
     <TextView
         android:id="@+id/away_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
+        style="@style/TextTeamName"
         app:layout_constraintEnd_toEndOf="@+id/away_badge"
         app:layout_constraintStart_toStartOf="@+id/away_badge"
         app:layout_constraintTop_toBottomOf="@+id/away_badge" />
 
     <View
         android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/darker_gray"
+        style="@style/LineSpacer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_team" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/const_goals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        style="@style/LayoutMatchContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
@@ -137,16 +108,14 @@
             android:id="@+id/goals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:text="@string/goals_title"
-            style="@style/MatchDetailTitle"
+            style="@style/TextMatchDetailTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/home_goal_details"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:singleLine="false"
             app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +123,7 @@
 
         <TextView
             android:id="@+id/away_goal_details"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
@@ -164,12 +133,9 @@
 
     <TextView
         android:id="@+id/shots_title"
-        style="@style/MatchDetailTitle"
+        style="@style/TextMatchDetailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/shots_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -197,52 +163,36 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/darker_gray"
+        style="@style/LineSpacer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shots_title" />
 
     <TextView
         android:id="@+id/goal_keeper_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/goal_keeper_title"
-        style="@style/MatchDetailTitle"
+        style="@style/TextMatchDetailTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineups_title" />
 
     <TextView
         android:id="@+id/home_gk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextLineUpsHome"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/goal_keeper_title" />
 
     <TextView
         android:id="@+id/away_gk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextLineUpsAway"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/goal_keeper_title" />
 
     <TextView
         android:id="@+id/lineups_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        style="@style/TextMatchDetailTitle"
         android:text="@string/lineups_title"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -251,11 +201,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/const_defense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        style="@style/LayoutMatchContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/goal_keeper_title">
@@ -263,38 +209,28 @@
 
         <TextView
             android:id="@+id/defense_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="@string/defense_title"
-            style="@style/MatchDetailTitle"
+            style="@style/TextMatchDetailTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/home_defense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextLineUpsHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/defense_title" />
 
         <TextView
             android:id="@+id/away_defense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
+            style="@style/TextLineUpsAway"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/defense_title" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/const_midfield"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        style="@style/LayoutMatchContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -302,12 +238,7 @@
 
         <TextView
             android:id="@+id/midfield_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            style="@style/MatchDetailTitle"
+            style="@style/TextMatchDetailTitle"
             android:text="@string/midfield_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -315,39 +246,27 @@
 
         <TextView
             android:id="@+id/home_midfield"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextLineUpsHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/midfield_title" />
 
         <TextView
             android:id="@+id/away_midfield"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
+            style="@style/TextLineUpsAway"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/midfield_title" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/const_forward"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        style="@style/LayoutMatchContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/const_midfield">
 
         <TextView
             android:id="@+id/forward_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            style="@style/MatchDetailTitle"
+            style="@style/TextMatchDetailTitle"
             android:text="@string/forward_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -355,28 +274,20 @@
 
         <TextView
             android:id="@+id/home_forward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextLineUpsHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/forward_title" />
 
         <TextView
             android:id="@+id/away_forward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
+            style="@style/TextLineUpsAway"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/forward_title" />
     </android.support.constraint.ConstraintLayout>
 
     <TextView
         android:id="@+id/substitutes_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        style="@style/MatchDetailTitle"
+        style="@style/TextMatchDetailTitle"
         android:text="@string/substitutes_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -384,18 +295,15 @@
 
     <TextView
         android:id="@+id/home_substitutes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextLineUpsHome"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/substitutes_title" />
 
     <TextView
         android:id="@+id/away_substitutes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextLineUpsAway"
         android:layout_marginEnd="8dp"
-        android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/substitutes_title" />
 

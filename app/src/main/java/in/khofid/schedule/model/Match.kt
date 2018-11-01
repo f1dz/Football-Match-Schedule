@@ -31,5 +31,15 @@ data class Match(
     var homeScore: Int? = null,
 
     @SerializedName("intAwayScore")
-    var awayScore: Int? = null
+    var awayScore: Int? = null,
+
+    @SerializedName("strSport")
+    var sport: String? = null,
+
+    @SerializedName("strEvent")
+    var event: String? = null,
+
+    @SerializedName("strFilename")
+    var fileName: String? = null
+
 ): Parcelable

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Football Match</string>
 
-    <string name="prev_match_title">Prev. Match</string>
+    <string name="prev_match_title">Last Match</string>
     <string name="next_match_title">Next Match</string>
     <string name="home_badge_title">Home Badge</string>
     <string name="away_badge_title">Away Badge</string>
@@ -20,4 +20,23 @@
     <string name="title_activity_match_detail">MatchDetailActivity</string>
     <string name="match_detail_title">Match Detail</string>
     <string name="favorites">Favorites</string>
+    <string name="matches">Matches</string>
+    <string name="teams">Teams</string>
+    <string name="team_badge">Team Badge</string>
+    <string name="search_title">Search</string>
+    <string name="team_detail_title">Team Detail</string>
+    <string name="overview_title">Overview</string>
+    <string name="players_title">Players</string>
+    <string name="player_height_weight">%1$s m, %2$s kg</string>
+    <string name="weight_title">Weight (kg)</string>
+    <string name="height_title">Height (kg)</string>
+    <string name="favorite_removed">Removed from favorite</string>
+    <string name="favorite_added">Added to favorite</string>
+    <string name="search_match">Search Match</string>
+    <string name="player_photo">Player Photo</string>
+    <string name="matches_not_found">Matches not found!</string>
+    <string name="teams_not_found">Teams not found!</string>
+    <string name="players_not_found">Players not found!</string>
+    <string name="no_favorites_matches">You don\'t have favorite matches</string>
+    <string name="no_favorites_teams">You don\'t have favorite teams</string>
 </resources>
