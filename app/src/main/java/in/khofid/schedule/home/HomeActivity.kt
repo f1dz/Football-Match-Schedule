@@ -7,14 +7,12 @@ import `in`.khofid.schedule.team.TeamsFragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import com.facebook.stetho.Stetho
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Stetho.initializeWithDefaults(this)
         setContentView(R.layout.activity_home)
 
         bottom_navigation.setOnNavigationItemSelectedListener {item ->
