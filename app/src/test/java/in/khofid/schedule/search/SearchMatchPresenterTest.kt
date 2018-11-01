@@ -47,10 +47,4 @@ class SearchMatchPresenterTest {
         verify(view).hideLoading()
 
     }
-
-    @Test
-    fun processBadge() {
-
-
-    }
 }
